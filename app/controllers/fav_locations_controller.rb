@@ -1,0 +1,2 @@
+class FavLocationsController < ApplicationController
+end
