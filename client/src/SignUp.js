@@ -1,7 +1,7 @@
 function SignUp() {
     return (
       <div>
-        <h2>SIGN UP</h2>
+        <h2>SIGNUP</h2>
       </div>
     );
   }
