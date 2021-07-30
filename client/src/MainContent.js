@@ -8,9 +8,9 @@ import SignUp from './SignUp'
 
 function MainContent() {
 
-    const googleAPI = 'AIzaSyChSJ2gd7cIp0s-Bgur3rw60g0g-3bNVBk'
-    const clientId = 'GAIENZ024HLCHRJLL4J52QH3EMACC2R51LPOZE2LYFU13YD0'
-    const clientSecret = 'IVAJ55ISUOGBY4A1CFANJTDZ0HJPX2EUHBYR4NWMSNG5VXIY'
+    const googleAPI = INSERT KEY HERE
+    const clientId = INSERT KEY HERE
+    const clientSecret = INSERT KEY HERE
 
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
