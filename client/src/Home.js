@@ -6,17 +6,19 @@ function Home() {
     name: "",
     address: "",
     city: "",
-    type: ""
+    type: "",
+    imgUrl: ""
   })
+
+  const googleAPI = INSERT API
+  const clientId = INSERT API
+  const clientSecret = INSERT API
   
   
   useEffect(() => {
-    const clientId =INSERT KEY
-    const clientSecret =INSERT KEY
-    const near= 'Manhattan,NY'
-    // const locations=['Manhattan,NY', 'Brooklyn,NY', 'Long Island,NY', 'Queens,NY', 'Middletown,NY']
-    // console.log(locations.sample)
-    // const today = new Date()
+
+    const near= 'New York,NY'
+  
     const queries = ['tacos', 'sushi', 'ice cream', 'bars', 'dancing', 'restaurant', 'park', 'carousel']
     const random = Math.floor(Math.random() * queries.length)
     const query = queries[random]
@@ -33,11 +35,21 @@ function Home() {
       let res = await fetch(`https://api.foursquare.com/v2/venues/search?near=${near}&client_id=${clientId}&client_secret=${clientSecret}&query=${query}&limit=1&v=${today}`);
       let json = await res.json();
       console.log(json.response.venues[0].name)
+
+      let placeSearch= json.response.venues[0].name + "New York,NY"
+
+      let res2 = await fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${placeSearch}&key=${googleAPI}`);
+      let json2 = await res2.json();
+      
+      console.log(json2.results[0].opening_hours.open_now)
       setHotSpot({
         name: json.response.venues[0].name,
         address: json.response.venues[0].location.address,
         city: json.response.venues[0].location.city,
-        type: json.response.venues[0].categories[0].name
+        type: json.response.venues[0].categories[0].name,
+        imgUrl: json2.results[0].photos[0].photo_reference,
+        hours: json2.results[0].opening_hours.open_now
+
       })  
       }
       fetchOrder();
@@ -51,7 +63,7 @@ function Home() {
           <h3>Miss being with people? Discover new venues and plan your next outing with "Let's Hang"!</h3>
         </div>
         <div>
-           <DisplayVenue />
+           <DisplayVenue hotSpot={hotSpot} googleAPI={googleAPI} />
         </div>
       </div>
     );
