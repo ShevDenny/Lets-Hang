@@ -8,32 +8,32 @@ function SignUp({ currentUser, setCurrentUser }) {
   const [email, setEmail] = useState("")
   const [errors, setErrors] = useState(null)
 
-  const history = useHistory()
+  // const history = useHistory()
 
-  // async function handleSubmit(e) {
-  //   e.preventDefault()
-  //   const user = {
-  //     name,
-  //     user_name: userName,
-  //     password,
-  //     email
-  //   }
-  //   const res = await fetch(`http://localhost:3000/users`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({user})
-  //   })
-  //   const userData = await res.json()
-  //   if (res.ok){
-  //     console.log(userData)
-  //     setCurrentUser(userData)
-  //     // history.push('/')
-  //   } else {
-  //     setErrors(userData.message)
-  //   }
-  // }
+  async function handleSubmit(e) {
+    e.preventDefault()
+    const user = {
+      name,
+      user_name: userName,
+      password,
+      email
+    }
+    const res = await fetch(`http://localhost:3000/users`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({user})
+    })
+    const userData = await res.json()
+    if (res.ok){
+      console.log(userData)
+      setCurrentUser(userData)
+      // history.push('/')
+    } else {
+      setErrors(userData.message)
+    }
+  }
 
   return (
     <div>
