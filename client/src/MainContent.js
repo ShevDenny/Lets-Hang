@@ -6,7 +6,7 @@ import MyHangs from './MyHangs'
 import LogIn from './LogIn'
 import SignUp from './SignUp'
 
-function MainContent() {
+function MainContent({ currentUser, setCurrentUser }) {
 
     const googleAPI = 
     const clientId = 
@@ -33,10 +33,10 @@ function MainContent() {
             <Route path="/my_hangs">
                 <MyHangs />
             </Route>
-            <Route path="/log_in">
+            <Route path="/log_in" currentUser={currentUser} setCurrentUser={setCurrentUser}>
                 <LogIn />
             </Route>
-            <Route path="/sign_up">
+            <Route path="/sign_up" currentUser={currentUser} setCurrentUser={setCurrentUser}>
                 <SignUp />
             </Route>
         </Switch>

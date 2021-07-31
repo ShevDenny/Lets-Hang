@@ -8,7 +8,7 @@ function Search({googleAPI, clientId, clientSecret, today}) {
   //   location: ""
   // })
   const [query, setQuery] = useState("")
-  const [location, setLocation] = useState("")
+  const [location, setLocation] = useState("default")
   const [venues, setVenues] = useState([{
     name: "",
     address: "",
@@ -60,7 +60,6 @@ function Search({googleAPI, clientId, clientSecret, today}) {
     async function searchVenue() {
       let res = await fetch(`https://api.foursquare.com/v2/venues/search?near=${location}&client_id=${clientId}&client_secret=${clientSecret}&query=${query}&limit=5&v=${today}`);
       let json = await res.json();
-      console.log(json.response.venues)
 
       // const imgResults = json.response.venues.map(index => {
       //   let placeSearch= json.response.venues[index].name + " " + location;
@@ -133,12 +132,17 @@ function Search({googleAPI, clientId, clientSecret, today}) {
     
     }
     searchVenue()
-    console.log("click")  
+    console.log("click")
+    setDisplay(true)  
     
   }
 
     console.log(venues)
 
+    const displayVenues = venues.map(venue => {
+      console.log(venue)
+      return <DisplayVenue venue={venue} />
+    })
 
   return (
     <div>
@@ -150,20 +154,19 @@ function Search({googleAPI, clientId, clientSecret, today}) {
       }}>
         <input type="text" placeholder="Search" onChange={handleChange} value={query}></input>
         <select name="location" onChange={handleLocation} value={location}>
-          {/* no idea why selected/disabled option isn't working... */}
           <option value="default" selected disabled>Location</option>          
           <option value="Brooklyn, NY">Brooklyn</option>
           <option value="Jersey City, NJ">Jersey City</option>
           <option value="Queens, NY">Queens</option>
           <option value="Long Island, NY">Long Island</option>
-          <option value="Bronx, NY">Bronx</option>
+          <option value="Bronx, NY">The Bronx</option>
           <option value="Manhattan, NY">Manhattan</option>
         </select>
         <input type="submit"></input>
       </form>
       <div className="resultsBox">
         <div className="resultVenues">
-          {display ? <DisplayVenue /> : null}
+          {display ? <div id="displayBox">Hello! {displayVenues}</div> : null}
         </div>
       </div>
       
