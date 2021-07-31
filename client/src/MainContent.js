@@ -9,7 +9,7 @@ import SignUp from './SignUp'
 function MainContent({ currentUser, setCurrentUser }) {
 
     const googleAPI = 
-    const clientId = 
+    const clientId =
     const clientSecret = 
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');

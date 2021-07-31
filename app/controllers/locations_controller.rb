@@ -5,20 +5,19 @@ class LocationsController < ApplicationController
     end
 
     def create
-        new_location = Location.create(location_params)
+        location = Location.create(location_params)
 
         if location.valid?
-            render json: new_location, status: 201
+            render json: location, status: 201
         else           
-        render json: new_location
+            render json: {errors: location.errors.full_messages}, status: :unprocessable_entity
         end
-
     end
 
     private
 
     def location_params
-        params.permit(:name, :address, :city, :category)
+        params.permit(:name, :address, :city, :category, :img_url)
     end
 end
 

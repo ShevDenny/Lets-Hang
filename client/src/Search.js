@@ -60,6 +60,22 @@ function Search({googleAPI, clientId, clientSecret, today}) {
     async function searchVenue() {
       let res = await fetch(`https://api.foursquare.com/v2/venues/search?near=${location}&client_id=${clientId}&client_secret=${clientSecret}&query=${query}&limit=5&v=${today}`);
       let json = await res.json();
+      console.log(json.response.venues)
+      console.log(json.response.venues[0].id)
+
+      const ids = json.response.venues.map(index => index.id)
+      console.log(ids)
+      
+      const results = ids.map(id => {
+        fetch(`https://api.foursquare.com/v2/venues/${id}?&client_id=${clientId}&client_secret=${clientSecret}&v=${today}`)
+        .then(res => res.json())
+        .then(data => console.log(data))
+      })
+      console.log(results)
+      // let prefix = json2.response.venues.photos.groups.items.prefix
+      // let suffix = json2.response.venues.photos.groups.items.suffix
+
+      // return image = `${prefix}200x500${suffix}`
 
       // const imgResults = json.response.venues.map(index => {
       //   let placeSearch= json.response.venues[index].name + " " + location;
@@ -97,40 +113,40 @@ function Search({googleAPI, clientId, clientSecret, today}) {
           name: json.response.venues[0].name,
           address: json.response.venues[0].location.address,
           city: json.response.venues[0].location.city,
-          type: type0,
+          category: type0,
           imgUrl: ""
         },
         {
           name: json.response.venues[1].name,
           address: json.response.venues[1].location.address,
           city: json.response.venues[1].location.city,
-          type: type1,
+          category: type1,
           imgUrl: ""
         },
         {
           name: json.response.venues[2].name,
           address: json.response.venues[2].location.address,
           city: json.response.venues[2].location.city,
-          type: type2,
+          category: type2,
           imgUrl: ""
         },
         {
           name: json.response.venues[3].name,
           address: json.response.venues[3].location.address,
           city: json.response.venues[3].location.city,
-          type: type3,
+          category: type3,
           imgUrl: ""
         },
         {
           name: json.response.venues[4].name,
           address: json.response.venues[4].location.address,
           city: json.response.venues[4].location.city,
-          type: type4,
+          category: type4,
           imgUrl: ""
         } ]
       )
-    
     }
+    
     searchVenue()
     console.log("click")
     setDisplay(true)  
@@ -154,7 +170,7 @@ function Search({googleAPI, clientId, clientSecret, today}) {
       }}>
         <input type="text" placeholder="Search" onChange={handleChange} value={query}></input>
         <select name="location" onChange={handleLocation} value={location}>
-          <option value="default" selected disabled>Location</option>          
+          <option value="default" disabled>Location</option>          
           <option value="Brooklyn, NY">Brooklyn</option>
           <option value="Jersey City, NJ">Jersey City</option>
           <option value="Queens, NY">Queens</option>

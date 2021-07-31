@@ -39,7 +39,7 @@ function Home({googleAPI, clientId, clientSecret, today}) {
       let res2 = await fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${placeSearch}&key=${googleAPI}`);
       let json2 = await res2.json();
       
-      console.log(json2.results[0])
+      // console.log(json2.results[0])
       // console.log(json2.results[0].opening_hours.open_now)
       let open_hours
       if (typeof json2.results[0].opening_hours !== 'undefined' && json2.results[0].hasOwnProperty('opening_hours')) {
@@ -52,14 +52,14 @@ function Home({googleAPI, clientId, clientSecret, today}) {
         name: json.response.venues[0].name,
         address: json.response.venues[0].location.address,
         city: json.response.venues[0].location.city,
-        type: json.response.venues[0].categories[0].name,
+        category: json.response.venues[0].categories[0].name,
         imgUrl: json2.results[0].photos[0].photo_reference,
         hours: open_hours
       })  
       }
       fetchOrder();
     }, [])
-    console.log(hotSpot)
+    // console.log(hotSpot)
 
     return (
       <div>
