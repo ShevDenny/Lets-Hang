@@ -1,8 +1,9 @@
 import { NavLink } from 'react-router-dom'
 
-function NavBar() {
+function NavBar({currentUser}) {
     return (
       <div id="navbar">
+        <h1>Hello, {currentUser.name}</h1>
         <NavLink className="links" to="/">Home</NavLink>
         <NavLink className="links" to="/search">Search</NavLink>
         <NavLink className="links" to="/fav_spots">FavSpots</NavLink>

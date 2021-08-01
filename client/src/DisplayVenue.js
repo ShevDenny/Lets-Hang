@@ -40,8 +40,77 @@ function DisplayVenue({venue, googleAPI}) {
         
     // }
     // fetchLocation()
+    function handleFav(e) {
+        console.log(e.target.value)
+        // const new_venue = {
+        //     name: venue.name,
+        //     address: venue.address,
+        //     city: venue.city,
+        //     category: venue.category,
+        //     img_url: venue.imgUrl,
+        //     // img_url: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${venue.imgUrl}&key=${googleAPI}`
+        // }
+        // console.log("HOPE", new_venue)
 
-
+        let locationId = ""
+        async function fetchLocation(){
+            const new_venue = {
+                name: venue.name,
+                address: venue.address,
+                city: venue.city,
+                category: venue.category,
+                img_url: venue.imgUrl,
+            // img_url: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${venue.imgUrl}&key=${googleAPI}`
+            }
+            console.log(new_venue)
+            const res = await fetch('http://localhost:3000/locations', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(new_venue)
+            })
+            if (res.ok) {
+                const data = await res.json()
+                console.log(data)
+                locationId = data.id
+            } else {
+                const error = await res.json()
+                setErrors(error.message)
+                console.log(error)
+            }
+            async function fetchFav(){
+                const new_fav = {
+                    location_id: locationId,
+                    user_id: 1,
+                    note: "wow"
+                }
+                console.log(new_fav)
+                const res = await fetch('http://localhost:3000/fav_locations', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(new_fav)
+                })
+                if (res.ok) {
+                    const data = await res.json()
+                    console.log(data)
+                } else {
+                    const error = await res.json()
+                    setErrors(error.message)
+                    console.log(error)
+                }
+                
+            }
+            fetchFav()
+        }
+        fetchLocation()
+        console.log(locationId)
+        
+        
+    }
+    // console.log(venue)
     return(
         <div>
             <h1>{venue.name}</h1>
@@ -51,7 +120,7 @@ function DisplayVenue({venue, googleAPI}) {
             {/* <img src="https://fastly.4sqi.net/img/general/300x500/6036_Xv3VOJm0A8HMF8EbQWdKPXIce7LxcvXOMt4_nW5gDhU.jpg" /> */}
             <h3>Address: {venue.address}, {venue.city}</h3>
             <h3>Open now: {venue.hours ? "Open" : "Closed" } </h3>
-            <button value={venue.name}>Fave Spot</button>
+            <button value={venue.name} onClick={handleFav}>Fave Spot</button>
             <button value={venue.name} onClick={handleClick}>Plan a hang</button>
             {displayForm ? <MyHangsForm/> : null}           
 

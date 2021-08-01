@@ -9,7 +9,7 @@ function PageContent() {
 
   return (
     <div>
-      <NavBar />
+      <NavBar currentUser={currentUser} />
       <MainContent currentUser={currentUser} setCurrentUser={setCurrentUser}/>
     </div>
   );

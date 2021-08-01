@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   resources :locations, only: [:index, :create]
-  resources :users
+  resources :users, only: [:create]
   resources :user_events
   resources :events
   resources :fav_locations  
