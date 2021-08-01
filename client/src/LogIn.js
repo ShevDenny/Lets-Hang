@@ -33,30 +33,30 @@ function LogIn({setCurrentUser}) {
   }
 
 
-    return (
-      <div>
-        
-        <form onSubmit={handleSubmit}>
-          <h2>LOG IN</h2>
-          <input
-            type="text" 
-            placeholder="User Name" 
-            value={userName} 
-            name="username"
-            onChange={(e) => setUserName(e.target.value)}
-          />
-          <input
-            type="password" 
-            placeholder="Password" 
-            value={password}
-            name="password" 
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <input submit type="submit" value="Log in" />
-          {errors ? errors.map(error => <div>{error}</div>) : null}
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div>
+      
+      <form onSubmit={handleSubmit}>
+        <h2>LOG IN</h2>
+        <input
+          type="text" 
+          placeholder="User Name" 
+          value={userName} 
+          name="username"
+          onChange={(e) => setUserName(e.target.value)}
+        />
+        <input
+          type="password" 
+          placeholder="Password" 
+          value={password}
+          name="password" 
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <input submit type="submit" value="Log in" />
+        {errors ? errors.map(error => <div>{error}</div>) : null}
+      </form>
+    </div>
+  );
+}
   
-  export default LogIn;
+export default LogIn;

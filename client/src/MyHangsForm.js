@@ -1,20 +1,66 @@
 import {useState} from 'react'
 
-function MyHangsForm(){
+function MyHangsForm({ venue }){
+    const [errors, setErrors] = useState(null)
     const [formData, setFormData] = useState({
         name: "",
         date: "",
-        time: ""
+        time: "",
+        location_id: ""
     })
 
- 
+    let locationId = ""
     function handleSubmit(e){
         e.preventDefault()
         console.log(e)
-        // async function createEvent(){
-        //     let res = await fetch('/events')
-        // }
+        async function fetchLocation(){
+            const new_venue = {
+                name: venue.name,
+                address: venue.address,
+                city: venue.city,
+                category: venue.category,
+                img_url: venue.imgUrl
+            }
+            console.log(new_venue)
+            const res = await fetch('http://localhost:3000/locations', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(new_venue)
+            })
+            if (res.ok) {
+                const data = await res.json()
+                console.log(data)
+                locationId = data.id
+                console.log(locationId)
+            } else {
+                const error = await res.json()
+                setErrors(error.message)
+                console.log(error)
+            }
+        }
+        fetchLocation()
 
+        async function postEvent(){
+            console.log(formData)
+            const res = await fetch('http://localhost:3000/events', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+            })
+            if (res.ok) {
+                const data = await res.json()
+                console.log(data)
+            } else {
+                const error = await res.json()
+                setErrors(error.message)
+                console.log(error)
+            }
+        }
+        postEvent()
     }
 
     function handleChange(e) {

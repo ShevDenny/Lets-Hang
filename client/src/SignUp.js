@@ -18,12 +18,13 @@ function SignUp({ currentUser, setCurrentUser }) {
       password,
       email
     }
-    const res = await fetch(`http://localhost:3000/users`, {
+    console.log(user)
+    const res = await fetch(`http://localhost:3000/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({user})
+      body: JSON.stringify(user)
     })
     const userData = await res.json()
     if (res.ok){
