@@ -64,7 +64,8 @@ function DisplayVenue({venue, googleAPI}) {
             // img_url: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${venue.imgUrl}&key=${googleAPI}`
             }
             console.log(new_venue)
-            const res = await fetch('http://localhost:3000/locations', {
+            const userId = localStorage.getItem("user_id")
+            const res = await fetch(`http://localhost:3000/fav_locations?user_id=${userId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -81,6 +82,24 @@ function DisplayVenue({venue, googleAPI}) {
                 setErrors(error.message)
                 console.log(error)
             }
+
+
+            // function someFetchOne(){
+            //     fetch("url")
+            //     .then(res => res.json())
+            //     .then(data => someFetchTwo(data))
+            // }
+
+            // function someFetchTwo(){
+            //     fetch("url")
+            //     .then(res => res.json())
+            //     .then(data => )
+            // }
+
+
+
+
+
             // async function fetchFav(){
             //     const new_fav = {
             //         location_id: locationId,

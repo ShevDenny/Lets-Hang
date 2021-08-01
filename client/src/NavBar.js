@@ -1,15 +1,17 @@
 import { NavLink } from 'react-router-dom'
 
-function NavBar({user, setUser, currentUser}) {
+function NavBar({ setCurrentUser, currentUser}) {
 
   function handleLogOut(){
-    async function logout(){
-      const res = await fetch('/logout', {method: 'DELETE'})
-      if(res.ok){
-        setUser(null)
-      }
-    }
-    logout()
+    // async function logout(){
+    //   const res = await fetch('/logout', {method: 'DELETE'})
+    //   if(res.ok){
+    //     setCurrentUser({})
+    //   }
+    // }
+    // logout()
+    localStorage.removeItem("user_id")
+    setCurrentUser({})
   }
     return (
       <div id="navbar">
@@ -18,12 +20,15 @@ function NavBar({user, setUser, currentUser}) {
         <NavLink className="links" to="/search">Search</NavLink>
         <NavLink className="links" to="/fav_spots">FavSpots</NavLink>
         <NavLink className="links" to="/my_hangs">My Hangs</NavLink>
-        {!user ? 
-        <NavLink className="links" to="/log_in">Log In</NavLink>
+        {Object.keys(currentUser).length === 0 ? 
+        <>
+          <NavLink className="links" to="/log_in">Log In</NavLink>
+          <NavLink className="links" to="/sign_up">Sign Up</NavLink>
+        </>
         :
         <NavLink className="links" to="/" onClick={handleLogOut}>Log Out</NavLink>
         }
-        <NavLink className="links" to="/sign_up">Sign Up</NavLink>
+        
         
       </div>
     );

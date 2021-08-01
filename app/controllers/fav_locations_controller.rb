@@ -1,22 +1,46 @@
 class FavLocationsController < ApplicationController
+    # before_action :authorize
+
     def index
         favLocations = FavLocation.all
         render json: favLocations
     end
 
     def create
-        fav_location = FavLocation.create(fav_params)
+        byebug
+        # location = Location.find_by(name: params[:name])
+        # id = 0
 
-        if fav_location.valid?
-            render json: fav_location, status: 201
-        else           
-            render json: {errors: fav_location.errors.full_messages}, status: :unprocessable_entity
-        end
+        # if location
+        #     id = location.id
+        # else
+        #     new_location = Location.create(location_params)
+
+        #     if new_location.valid?
+        #         id = new_location.id
+        #         render json: new_location, status: 201
+        #     else           
+        #         render json: {errors: new_location.errors.full_messages}, status: :unprocessable_entity
+        #     end
+        # end
+        # fav_location = FavLocation.create(user_id: @current_user.id, location_id: id)
+
+        # if fav_location.valid?
+        #     render json: fav_location, status: 201
+        # else           
+        #     render json: {errors: fav_location.errors.full_messages}, status: :unprocessable_entity
+        # end
     end
 
     private
     
-    def fav_params
-        params.permit(:user_id, :location_id, :note)
+    def location_params
+        params.permit(:name, :address, :city, :category, :img_url)
     end
+
+    # def fav_params
+    #     {user_id: @current_user,
+    #     location_id: location.id}
+    # end
+
 end

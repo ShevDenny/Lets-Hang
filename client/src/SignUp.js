@@ -29,6 +29,7 @@ function SignUp({ currentUser, setCurrentUser }) {
     const userData = await res.json()
     if (res.ok){
       console.log(userData)
+      localStorage.setItem("user_id", userData.id)
       setCurrentUser(userData)
       history.push('/')
     } else {

@@ -11,8 +11,6 @@ function Home({googleAPI, clientId, clientSecret, today}) {
   })
 
 
-  
-  
   useEffect(() => {
 
     const near= 'New York,NY'

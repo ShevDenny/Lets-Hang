@@ -4,21 +4,21 @@ class LocationsController < ApplicationController
         render json: locations
     end
 
-    def create
-        location = Location.find_by(name: params[:name])
+    # def create
+    #     location = Location.find_by(name: params[:name])
 
-        if location
-            render json: location
-        else
-            new_location = Location.create(location_params)
+    #     if location
+    #         render json: location
+    #     else
+    #         new_location = Location.create(location_params)
 
-            if new_location.valid?
-                render json: new_location, status: 201
-            else           
-                render json: {errors: new_location.errors.full_messages}, status: :unprocessable_entity
-            end
-        end
-    end
+    #         if new_location.valid?
+    #             render json: new_location, status: 201
+    #         else           
+    #             render json: {errors: new_location.errors.full_messages}, status: :unprocessable_entity
+    #         end
+    #     end
+    # end
 
     private
 

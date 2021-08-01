@@ -15,16 +15,17 @@ function LogIn({setCurrentUser}) {
       password
     }
 
-    const res = await fetch(`http://localhost:3000/sessions`, {
+    const res = await fetch(`http://localhost:3000/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({user})
+      body: JSON.stringify(user)
     })
     const userData = await res.json()
     if(userData.id){
       console.log(userData)
+      localStorage.setItem("user_id", userData.id)
       setCurrentUser(userData)
       history.push('/')
     } else {
