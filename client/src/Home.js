@@ -53,7 +53,7 @@ function Home({googleAPI, clientId, clientSecret, today}) {
         address: json.response.venues[0].location.address,
         city: json.response.venues[0].location.city,
         category: json.response.venues[0].categories[0].name,
-        imgUrl: json2.results[0].photos[0].photo_reference,
+        imgUrl: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${json2.results[0].photos[0].photo_reference}&key=${googleAPI}`,
         hours: open_hours
       })  
       }

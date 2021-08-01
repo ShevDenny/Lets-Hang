@@ -82,12 +82,42 @@ function Search({googleAPI, clientId, clientSecret, today}) {
       if (typeof json.response.venues[4].categories !== 'undefined' && json.response.venues[4].categories.length !== 0) {
         type4 = json.response.venues[4].categories[0].name
       }
+
+
       
       const results = ids.map(id => {
-        fetch(`https://api.foursquare.com/v2/venues/${id}?&client_id=${clientId}&client_secret=${clientSecret}&v=${today}`)
+        return fetch(`https://api.foursquare.com/v2/venues/${id}?&client_id=${clientId}&client_secret=${clientSecret}&v=${today}`)
         .then(res => res.json())
-        .then (console.log())
+        .then (data => {
+          console.log(data)
+          let useName, useAddress, useCity, useImg
+
+          // if (typeof data.response.venue.name !== 'undefined' && data.response.venues.hasOwnProperty("name")) {
+          //   useName = data.response.venue.name
+          // } else {
+          //   useName = "Don't know"
+          // }
+          // return {
+          //   name: useName,
+          //   address: data.response.venue.location.address,
+          //   city: data.response.venue.location.city,
+          //   imgUrl: `${data.response.venue.photos.groups[0].items[0].prefix}200x500${data.response.venue.photos.groups[0].items[0].suffix}`
+          // }
+        })
       })
+      
+      // Promise.all(results).then(data => {
+      //   //pu
+      //   setVenues(data)
+      // })
+
+      // console.log(results)
+      
+
+
+      // fetch(`https://api.foursquare.com/v2/venues/${ids[0]}?&client_id=${clientId}&client_secret=${clientSecret}&v=${today}`)
+      //   .then(res => res.json())
+      //   .then (data => console.log(data))
         // .then(data => setVenues(
         //   [{
         //     name: data.response.venues[0].name,
@@ -126,7 +156,7 @@ function Search({googleAPI, clientId, clientSecret, today}) {
         //   } ]
         // ))
      
-      console.log(results)
+      // console.log(results)
       // let prefix = json2.response.venues.photos.groups.items.prefix
       // let suffix = json2.response.venues.photos.groups.items.suffix
 
@@ -147,59 +177,59 @@ function Search({googleAPI, clientId, clientSecret, today}) {
       // let res2 = await fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${placeSearch}&key=${googleAPI}`);
       // let json2 = await res2.json();
 
-      let type0, type1, type2, type3, type4
-      if (typeof json.response.venues[0].categories !== 'undefined' && json.response.venues[0].categories.length !== 0) {
-        type0 = json.response.venues[0].categories[0].name
-      }
-      if (typeof json.response.venues[1].categories !== 'undefined' && json.response.venues[1].categories.length !== 0) {
-        type1 = json.response.venues[1].categories[0].name
-      }
-      if (typeof json.response.venues[2].categories !== 'undefined' && json.response.venues[2].categories.length !== 0) {
-        type2 = json.response.venues[2].categories[0].name
-      }
-      if (typeof json.response.venues[3].categories !== 'undefined' && json.response.venues[3].categories.length !== 0) {
-        type3 = json.response.venues[3].categories[0].name
-      }
-      if (typeof json.response.venues[4].categories !== 'undefined' && json.response.venues[4].categories.length !== 0) {
-        type4 = json.response.venues[4].categories[0].name
-      }
-      setVenues(
-        [{
-          name: json.response.venues[0].name,
-          address: json.response.venues[0].location.address,
-          city: json.response.venues[0].location.city,
-          category: type0,
-          imgUrl: ""
-        },
-        {
-          name: json.response.venues[1].name,
-          address: json.response.venues[1].location.address,
-          city: json.response.venues[1].location.city,
-          category: type1,
-          imgUrl: ""
-        },
-        {
-          name: json.response.venues[2].name,
-          address: json.response.venues[2].location.address,
-          city: json.response.venues[2].location.city,
-          category: type2,
-          imgUrl: ""
-        },
-        {
-          name: json.response.venues[3].name,
-          address: json.response.venues[3].location.address,
-          city: json.response.venues[3].location.city,
-          category: type3,
-          imgUrl: ""
-        },
-        {
-          name: json.response.venues[4].name,
-          address: json.response.venues[4].location.address,
-          city: json.response.venues[4].location.city,
-          category: type4,
-          imgUrl: ""
-        } ]
-      )
+      // let type0, type1, type2, type3, type4
+      // if (typeof json.response.venues[0].categories !== 'undefined' && json.response.venues[0].categories.length !== 0) {
+      //   type0 = json.response.venues[0].categories[0].name
+      // }
+      // if (typeof json.response.venues[1].categories !== 'undefined' && json.response.venues[1].categories.length !== 0) {
+      //   type1 = json.response.venues[1].categories[0].name
+      // }
+      // if (typeof json.response.venues[2].categories !== 'undefined' && json.response.venues[2].categories.length !== 0) {
+      //   type2 = json.response.venues[2].categories[0].name
+      // }
+      // if (typeof json.response.venues[3].categories !== 'undefined' && json.response.venues[3].categories.length !== 0) {
+      //   type3 = json.response.venues[3].categories[0].name
+      // }
+      // if (typeof json.response.venues[4].categories !== 'undefined' && json.response.venues[4].categories.length !== 0) {
+      //   type4 = json.response.venues[4].categories[0].name
+      // }
+      // setVenues(
+      //   [{
+      //     name: json.response.venues[0].name,
+      //     address: json.response.venues[0].location.address,
+      //     city: json.response.venues[0].location.city,
+      //     category: type0,
+      //     imgUrl: ""
+      //   },
+      //   {
+      //     name: json.response.venues[1].name,
+      //     address: json.response.venues[1].location.address,
+      //     city: json.response.venues[1].location.city,
+      //     category: type1,
+      //     imgUrl: ""
+      //   },
+      //   {
+      //     name: json.response.venues[2].name,
+      //     address: json.response.venues[2].location.address,
+      //     city: json.response.venues[2].location.city,
+      //     category: type2,
+      //     imgUrl: ""
+      //   },
+      //   {
+      //     name: json.response.venues[3].name,
+      //     address: json.response.venues[3].location.address,
+      //     city: json.response.venues[3].location.city,
+      //     category: type3,
+      //     imgUrl: ""
+      //   },
+      //   {
+      //     name: json.response.venues[4].name,
+      //     address: json.response.venues[4].location.address,
+      //     city: json.response.venues[4].location.city,
+      //     category: type4,
+      //     imgUrl: ""
+      //   } ]
+      // )
     }
     
     searchVenue()
