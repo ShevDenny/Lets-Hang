@@ -58,13 +58,87 @@ function Search({googleAPI, clientId, clientSecret, today}) {
     console.log(location)
     console.log(query)
     async function searchVenue() {
-      let res = await fetch(`https://api.foursquare.com/v2/venues/search?near=${location}&client_id=${clientId}&client_secret=${clientSecret}&query=${query}&limit=1&v=${today}`);
+      let res = await fetch(`https://api.foursquare.com/v2/venues/search?near=${location}&client_id=${clientId}&client_secret=${clientSecret}&query=${query}&limit=5&v=${today}`);
       let json = await res.json();
-      // console.log(json.response)
+      console.log(json.response.venues)
+
+      // const imgResults = json.response.venues.map(index => {
+      //   let placeSearch= json.response.venues[index].name + " " + location;
+      //   let res2 = fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${placeSearch}&key=${googleAPI}`);
+      //   let json2 = res2.json();
+      //   return json2.results[0].photos[0].photo_reference
+      // })
+
+      // console.log(imgResults)
+
+      // let placeSearch= json.response.venues[0].name + " " + location
+      // console.log(placeSearch)
+
+      // let res2 = await fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${placeSearch}&key=${googleAPI}`);
+      // let json2 = await res2.json();
+
+      let type0, type1, type2, type3, type4
+      if (typeof json.response.venues[0].categories !== 'undefined' && json.response.venues[0].categories.length !== 0) {
+        type0 = json.response.venues[0].categories[0].name
+      }
+      if (typeof json.response.venues[1].categories !== 'undefined' && json.response.venues[1].categories.length !== 0) {
+        type1 = json.response.venues[1].categories[0].name
+      }
+      if (typeof json.response.venues[2].categories !== 'undefined' && json.response.venues[2].categories.length !== 0) {
+        type2 = json.response.venues[2].categories[0].name
+      }
+      if (typeof json.response.venues[3].categories !== 'undefined' && json.response.venues[3].categories.length !== 0) {
+        type3 = json.response.venues[3].categories[0].name
+      }
+      if (typeof json.response.venues[4].categories !== 'undefined' && json.response.venues[4].categories.length !== 0) {
+        type4 = json.response.venues[4].categories[0].name
+      }
+      setVenues(
+        [{
+          name: json.response.venues[0].name,
+          address: json.response.venues[0].location.address,
+          city: json.response.venues[0].location.city,
+          type: type0,
+          imgUrl: ""
+        },
+        {
+          name: json.response.venues[1].name,
+          address: json.response.venues[1].location.address,
+          city: json.response.venues[1].location.city,
+          type: type1,
+          imgUrl: ""
+        },
+        {
+          name: json.response.venues[2].name,
+          address: json.response.venues[2].location.address,
+          city: json.response.venues[2].location.city,
+          type: type2,
+          imgUrl: ""
+        },
+        {
+          name: json.response.venues[3].name,
+          address: json.response.venues[3].location.address,
+          city: json.response.venues[3].location.city,
+          type: type3,
+          imgUrl: ""
+        },
+        {
+          name: json.response.venues[4].name,
+          address: json.response.venues[4].location.address,
+          city: json.response.venues[4].location.city,
+          type: type4,
+          imgUrl: ""
+        } ]
+      )
+    
     }
     searchVenue()
-    console.log("click")
+    console.log("click")  
+    
   }
+
+    console.log(venues)
+
 
   return (
     <div>
@@ -77,13 +151,13 @@ function Search({googleAPI, clientId, clientSecret, today}) {
         <input type="text" placeholder="Search" onChange={handleChange} value={query}></input>
         <select name="location" onChange={handleLocation} value={location}>
           {/* no idea why selected/disabled option isn't working... */}
-          <option selected disabled>Location</option>
-          <option value="Manhattan, NY">Manhattan</option>
+          <option value="default" selected disabled>Location</option>          
           <option value="Brooklyn, NY">Brooklyn</option>
           <option value="Jersey City, NJ">Jersey City</option>
           <option value="Queens, NY">Queens</option>
           <option value="Long Island, NY">Long Island</option>
           <option value="Bronx, NY">Bronx</option>
+          <option value="Manhattan, NY">Manhattan</option>
         </select>
         <input type="submit"></input>
       </form>
