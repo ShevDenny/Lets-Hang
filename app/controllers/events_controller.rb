@@ -27,7 +27,13 @@ class EventsController < ApplicationController
         event = Event.create(location_id: id, event: params[:event], date: params[:date], time: params[:time])
         
         if event.valid?
-            render json: event, status: 201
+            # render json: event, status: 201
+            user_event = UserEvent.create(user_id: @current_user.id, event_id: event.id)
+            if user_event.valid?
+                render json: user_event, status: :created
+            else
+                render json: {errors: user_event.errors.full_messages}, status: :unprocessable_entity
+            end
         else           
             render json: {errors: event.errors.full_messages}, status: :unprocessable_entity
         end

@@ -1,9 +1,14 @@
 class FavLocationsController < ApplicationController
     # before_action :authorize
 
+    # def index
+    #     fav_locations = FavLocation.all
+    #     render json: fav_locations
+    # end
+
     def index
-        favLocations = FavLocation.all
-        render json: favLocations
+        fav_locations = FavLocation.where(user_id: @current_user.id)
+        render json: fav_locations
     end
 
     def create

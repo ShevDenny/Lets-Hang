@@ -4,11 +4,12 @@ Rails.application.routes.draw do
   # resources :users, only: [:show]
   resources :user_events
   resources :events
-  resources :fav_locations, only: [:index]
+  # resources :fav_locations, only: [:index]
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   post "/signup", to: "users#create"
   post "/fav_locations", to: "fav_locations#create"
+  get "/fav_locations", to: "fav_locations#index"
   post "/events", to: "events#create"
   get '/re_auth', to: 'sessions#re_auth'
   # resources :sessions, only: [:create, :destroy]

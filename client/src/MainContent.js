@@ -8,9 +8,9 @@ import SignUp from './SignUp'
 
 function MainContent({ setShowLogin, showLogin, currentUser, setCurrentUser }) {
 
-    const googleAPI = 
-    const clientId = 
-    const clientSecret = 
+    const googleAPI = 'AIzaSyDBKr45Sm84Ap0qMysk_H8HkbcWJvY8y_U'
+    const clientId = 'VZ0PBMG1GMGUGWKN3MKCIN3DN35D0R540KM1ZEH4Z52F1Z2P'
+    const clientSecret = '1Q5RQAXSW4ATOJE52IQ5ZRU1NMNWIEIRULPXYNX4W1XFT305'
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
     let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
