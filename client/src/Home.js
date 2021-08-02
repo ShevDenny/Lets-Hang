@@ -68,7 +68,7 @@ function Home({googleAPI, clientId, clientSecret, today}) {
           <h3>Miss being with people? Discover new venues and plan your next outing with "Let's Hang"!</h3>
         </div>
         <div>
-           {/* <DisplayVenue venue={hotSpot} googleAPI={googleAPI} /> */}
+           <DisplayVenue venue={hotSpot} googleAPI={googleAPI} />
         </div>
       </div>
     );

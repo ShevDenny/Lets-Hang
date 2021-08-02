@@ -8,7 +8,7 @@ function SignUp({ currentUser, setCurrentUser }) {
   const [email, setEmail] = useState("")
   const [errors, setErrors] = useState(null)
 
-  // const history = useHistory()
+  const history = useHistory()
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -29,7 +29,7 @@ function SignUp({ currentUser, setCurrentUser }) {
     if (res.ok){
       console.log(userData)
       setCurrentUser(userData)
-      // history.push('/')
+      history.push('/')
     } else {
       setErrors(userData.message)
     }
