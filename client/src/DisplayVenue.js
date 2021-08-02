@@ -75,15 +75,15 @@ function DisplayVenue({venue, googleAPI}) {
             if (res.ok) {
                 const data = await res.json()
                 console.log(data)
-                locationId = data.id
-                console.log(locationId)
+                setFav(true)
             } else {
                 const error = await res.json()
                 setErrors(error.message)
                 console.log(error)
             }
 
-
+            // *********************************************************
+            // all attempts at posting to location & fav location
             // function someFetchOne(){
             //     fetch("url")
             //     .then(res => res.json())
@@ -95,10 +95,6 @@ function DisplayVenue({venue, googleAPI}) {
             //     .then(res => res.json())
             //     .then(data => )
             // }
-
-
-
-
 
             // async function fetchFav(){
             //     const new_fav = {
@@ -125,13 +121,14 @@ function DisplayVenue({venue, googleAPI}) {
                 
             // }
             // fetchFav()
+            // *************************************************************
         }
         fetchLocation()
         console.log(locationId)
         
         
     }
-    // console.log(venue)
+
     return(
         <div>
             <h1>{venue.name}</h1>

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   post "/signup", to: "users#create"
   post "/fav_locations", to: "fav_locations#create"
-
+  post "/events", to: "events#create"
   get '/re_auth', to: 'sessions#re_auth'
   # resources :sessions, only: [:create, :destroy]
   # delete "/logout", to: "sessions#destroy"

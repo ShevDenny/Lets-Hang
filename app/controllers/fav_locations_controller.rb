@@ -8,28 +8,29 @@ class FavLocationsController < ApplicationController
 
     def create
         
-        # location = Location.find_by(name: params[:name])
-        # id = 0
+        location = Location.find_by(name: params[:name])
+        id = 0
 
-        # if location
-        #     id = location.id
-        # else
-        #     new_location = Location.create(location_params)
-
-        #     if new_location.valid?
-        #         id = new_location.id
-        #         render json: new_location, status: 201
-        #     else           
-        #         render json: {errors: new_location.errors.full_messages}, status: :unprocessable_entity
-        #     end
-        # end
-        # fav_location = FavLocation.create(user_id: @current_user.id, location_id: id)
-
-        # if fav_location.valid?
-        #     render json: fav_location, status: 201
-        # else           
-        #     render json: {errors: fav_location.errors.full_messages}, status: :unprocessable_entity
-        # end
+        if location
+            id = location.id
+            
+        else
+            new_location = Location.create(location_params)
+            
+            if new_location.valid?
+                id = new_location.id
+                # render json: new_location, status: 201
+            else           
+                render json: {errors: new_location.errors.full_messages}, status: :unprocessable_entity
+            end
+        end
+        fav_location = FavLocation.create(user_id: @current_user.id, location_id: id)
+        
+        if fav_location.valid?
+            render json: fav_location, status: 201
+        else           
+            render json: {errors: fav_location.errors.full_messages}, status: :unprocessable_entity
+        end
     end
 
     private
