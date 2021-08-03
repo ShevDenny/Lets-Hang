@@ -4,8 +4,9 @@ class CreateLocations < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :address
       t.string :city
-      t.string :type
+      t.string :category
       t.string :img_url
+      t.string :description
       t.boolean :hours
       t.boolean :groups
       t.boolean :outdoor

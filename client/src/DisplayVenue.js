@@ -9,9 +9,9 @@ function DisplayVenue({venue, googleAPI}) {
         console.log(e.target.value)
     }
 
-    useEffect(() => {
-        fetch('localhost:3000/locations')
-    })
+    // useEffect(() => {
+    //     fetch('localhost:3000/locations')
+    // })
 
 
    
@@ -22,6 +22,7 @@ function DisplayVenue({venue, googleAPI}) {
             <h1>{venue.name}</h1>
             <h3>Type of hang: {venue.type}</h3>
             <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${venue.imgUrl}&key=${googleAPI}`} />
+            {/* <img src="https://fastly.4sqi.net/img/general/300x500/6036_Xv3VOJm0A8HMF8EbQWdKPXIce7LxcvXOMt4_nW5gDhU.jpg" /> */}
             <h3>Address: {venue.address}, {venue.city}</h3>
             <h3>Open now: {venue.hours ? "Open" : "Closed" } </h3>
             <button value={venue.name}>Fave Spot</button>

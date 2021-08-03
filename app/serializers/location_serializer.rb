@@ -1,3 +1,3 @@
 class LocationSerializer < ActiveModel::Serializer
-  attributes :id, :name, :address, :city, :type, :hours, :groups, :outdoor, :date
+  attributes :id, :name, :address, :city, :category, :img_url, :description, :hours, :groups, :outdoor, :date
 end
