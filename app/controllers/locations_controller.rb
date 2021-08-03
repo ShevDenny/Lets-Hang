@@ -5,13 +5,12 @@ class LocationsController < ApplicationController
     end
 
     def create
-        location = Location.find_by(name: params[:name])
+        new_location = Location.create(location_params)
 
-        if location
-            render json: location
-        else
-            new_location = Location.create(location_params)
-        render json: new_location, status: 201
+        if location.valid?
+            render json: new_location, status: 201
+        else           
+        render json: new_location
         end
 
     end
