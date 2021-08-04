@@ -10,7 +10,10 @@ function MyHangsForm(){
  
     function handleSubmit(e){
         e.preventDefault()
-        console.log(e.target.value)
+        console.log(e)
+        // async function createEvent(){
+        //     let res = await fetch('/events')
+        // }
 
     }
 
@@ -20,9 +23,10 @@ function MyHangsForm(){
         const newData = {
             ...formData, [key]: val
         }
+        console.log(newData)
         setFormData(newData)
     }
-   console.log(formData)
+   
 
    return (
         <div>

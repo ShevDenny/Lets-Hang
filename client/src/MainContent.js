@@ -10,7 +10,7 @@ function MainContent({ currentUser, setCurrentUser }) {
 
     const googleAPI = 
     const clientId = 
-    const clientSecret = 
+    const clientSecret = ""
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
     let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -32,11 +32,11 @@ function MainContent({ currentUser, setCurrentUser }) {
             <Route path="/my_hangs">
                 <MyHangs />
             </Route>
-            <Route path="/log_in" currentUser={currentUser} setCurrentUser={setCurrentUser}>
-                <LogIn />
+            <Route path="/log_in" >
+                <LogIn currentUser={currentUser} setCurrentUser={setCurrentUser}/>
             </Route>
-            <Route path="/sign_up" currentUser={currentUser} setCurrentUser={setCurrentUser}>
-                <SignUp />
+            <Route path="/sign_up" >
+                <SignUp currentUser={currentUser} setCurrentUser={setCurrentUser}/>
             </Route>
         </Switch>
       </div>

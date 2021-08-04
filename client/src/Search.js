@@ -66,22 +66,22 @@ function Search({googleAPI, clientId, clientSecret, today}) {
       const ids = json.response.venues.map(index => index.id)
       console.log(ids)
 
-      let type0, type1, type2, type3, type4
-      if (typeof json.response.venues[0].categories !== 'undefined' && json.response.venues[0].categories.length !== 0) {
-        type0 = json.response.venues[0].categories[0].name
-      }
-      if (typeof json.response.venues[1].categories !== 'undefined' && json.response.venues[1].categories.length !== 0) {
-        type1 = json.response.venues[1].categories[0].name
-      }
-      if (typeof json.response.venues[2].categories !== 'undefined' && json.response.venues[2].categories.length !== 0) {
-        type2 = json.response.venues[2].categories[0].name
-      }
-      if (typeof json.response.venues[3].categories !== 'undefined' && json.response.venues[3].categories.length !== 0) {
-        type3 = json.response.venues[3].categories[0].name
-      }
-      if (typeof json.response.venues[4].categories !== 'undefined' && json.response.venues[4].categories.length !== 0) {
-        type4 = json.response.venues[4].categories[0].name
-      }
+      // let type0, type1, type2, type3, type4
+      // if (typeof json.response.venues[0].categories !== 'undefined' && json.response.venues[0].categories.length !== 0) {
+      //   type0 = json.response.venues[0].categories[0].name
+      // }
+      // if (typeof json.response.venues[1].categories !== 'undefined' && json.response.venues[1].categories.length !== 0) {
+      //   type1 = json.response.venues[1].categories[0].name
+      // }
+      // if (typeof json.response.venues[2].categories !== 'undefined' && json.response.venues[2].categories.length !== 0) {
+      //   type2 = json.response.venues[2].categories[0].name
+      // }
+      // if (typeof json.response.venues[3].categories !== 'undefined' && json.response.venues[3].categories.length !== 0) {
+      //   type3 = json.response.venues[3].categories[0].name
+      // }
+      // if (typeof json.response.venues[4].categories !== 'undefined' && json.response.venues[4].categories.length !== 0) {
+      //   type4 = json.response.venues[4].categories[0].name
+      // }
 
 
       
