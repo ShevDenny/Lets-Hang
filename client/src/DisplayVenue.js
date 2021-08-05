@@ -5,9 +5,18 @@ import MyHangsForm from "./MyHangsForm"
 function DisplayVenue({venue, googleAPI, fav, setFav, currentUser}) {
     const [displayForm, setDisplayForm] = useState(false)
     const [errors, setErrors] = useState(null)
+    const [favd, setFavd] = useState(false)
 
     // const history = useHistory()
     let locationId = ""
+
+    // useEffect(() => {
+    //         console.log(venue.name)
+    //         const userId = localStorage.getItem("user_id")
+    //         fetch(`http://localhost:3000/fav_locations/${userId}?user_id=${userId}&name=${venue.name}`)
+    //         .then(res => res.json())
+    //         .then(data => console.log(data))
+    // }, [])
 
     function handleClick(e) {
         setDisplayForm(!displayForm)
@@ -134,6 +143,8 @@ function DisplayVenue({venue, googleAPI, fav, setFav, currentUser}) {
         
     }
 
+    
+
     return(
         <div>
             <h1>{venue.name}</h1>
@@ -143,8 +154,10 @@ function DisplayVenue({venue, googleAPI, fav, setFav, currentUser}) {
             {/* <img src="https://fastly.4sqi.net/img/general/300x500/6036_Xv3VOJm0A8HMF8EbQWdKPXIce7LxcvXOMt4_nW5gDhU.jpg" /> */}
             <h3>Address: {venue.address}, {venue.city}</h3>
             <h3>Open now: {venue.hours ? "Open" : "Closed" } </h3>
-            {Object.keys(currentUser).length === 0 ? 
-             null
+            {Object.keys(currentUser).length === 0
+            ?
+            <>
+            </>
             : 
             <>
             {!fav ? <button value={venue.name} onClick={handleFav}>Fave Spot</button> : <button disabled>Fav-ed</button>}

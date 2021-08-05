@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
   post "/fav_locations", to: "fav_locations#create"
   get "/fav_locations", to: "fav_locations#index"
+  get "/fav_locations/:id", to: "fav_locations#show"
   post "/events", to: "events#create"
   get '/re_auth', to: 'sessions#re_auth'
   # resources :sessions, only: [:create, :destroy]

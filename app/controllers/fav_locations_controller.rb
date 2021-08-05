@@ -11,6 +11,19 @@ class FavLocationsController < ApplicationController
         render json: fav_locations
     end
 
+    def show
+        location = Location.find_by(name: params[:name])
+        byebug
+        if location
+            fav_exists = FavLocation.find_by(user_id: @current_user.id, location_id: location_id)
+            if fav_exists
+                render json: fav_exists.id
+            else
+                render json: {errors: fav_exists.errors.full_messages}, status: :not_found
+            end
+        end
+    end
+
     def create
         
         location = Location.find_by(name: params[:name])

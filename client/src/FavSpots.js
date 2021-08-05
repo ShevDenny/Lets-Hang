@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import DisplayVenue from './DisplayVenue'
 
-function FavSpots({fav, setFav}) {
+function FavSpots({fav, setFav, currentUser}) {
 
   const [favSpots, setFavSpots] = useState([])
   const [errors, setErrors] = useState(null)
@@ -62,7 +62,7 @@ function FavSpots({fav, setFav}) {
     const displayVenues = favSpots.map(venue => {
     console.log(venue)
     setFav(true)
-    return <DisplayVenue fav={fav} venue={venue} />
+    return <DisplayVenue currentUser={currentUser} fav={fav} venue={venue} />
   })
 
     return (

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import {useHistory} from "react-router-dom"
 
 function Home({googleAPI, clientId, clientSecret, today, currentUser, setCurrentUser, fav, setFav}) {
+  const [errors, setErrors] = useState(null)
   const [hotSpot, setHotSpot] = useState({
     name: "",
     address: "",
@@ -64,9 +65,30 @@ function Home({googleAPI, clientId, clientSecret, today, currentUser, setCurrent
         imgUrl: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${json2.results[0].photos[0].photo_reference}&key=${googleAPI}`,
         hours: open_hours
       })  
+      console.log(hotSpot.name)
+      
+      const userId = localStorage.getItem("user_id")
+      const secondFunction = async () => {
+        const result = await fetchOrder()
+        console.log(hotSpot.name)
+        fetch(`http://localhost:3000/fav_locations/${userId}?user_id=${userId}&name=${hotSpot.name}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.errors){
+        setErrors(data)
+      } else {
+        setFav(true)
+        console.log(data)
+      }})}
       }
       fetchOrder()
-      setFav(false);
+    
+      // console.log(hotSpot.name)
+      // const userId = localStorage.getItem("user_id")
+      // fetch(`http://localhost:3000/fav_locations/${userId}?user_id=${userId}&name=${hotSpot.name}`)
+      // .then(res => res.json())
+      // .then(data => console.log(data))
+      // setFav(false);
     }, [])
     // console.log(hotSpot)
 

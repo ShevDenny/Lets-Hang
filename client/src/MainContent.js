@@ -30,7 +30,7 @@ function MainContent({ setShowLogin, showLogin, currentUser, setCurrentUser }) {
                 <Search currentUser={currentUser} setCurrentUser={setCurrentUser} googleAPI={googleAPI} clientId={clientId} clientSecret={clientSecret} today={today} fav={fav} setFav={setFav}/>
             </Route>
             <Route path="/fav_spots">
-                <FavSpots fav={fav} setFav={setFav}/>
+                <FavSpots fav={fav} setFav={setFav} currentUser={currentUser}/>
             </Route>
             <Route path="/my_hangs">
                 <MyHangs />
