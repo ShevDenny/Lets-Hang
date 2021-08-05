@@ -2,7 +2,7 @@ import DisplayVenue from './DisplayVenue'
 import React, { useState, useEffect } from 'react'
 import {useHistory} from "react-router-dom"
 
-function Home({googleAPI, clientId, clientSecret, today, currentUser, setCurrentUser}) {
+function Home({googleAPI, clientId, clientSecret, today, currentUser, setCurrentUser, fav, setFav}) {
   const [hotSpot, setHotSpot] = useState({
     name: "",
     address: "",
@@ -76,7 +76,7 @@ function Home({googleAPI, clientId, clientSecret, today, currentUser, setCurrent
           <h3>Miss being with people? Discover new venues and plan your next outing with "Let's Hang"!</h3>
         </div>
         <div>
-           <DisplayVenue venue={hotSpot} googleAPI={googleAPI} />
+           <DisplayVenue venue={hotSpot} googleAPI={googleAPI} fav={fav} setFav={setFav}/>
         </div>
       </div>
     );

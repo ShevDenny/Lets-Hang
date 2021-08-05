@@ -1,4 +1,5 @@
 import { Route, Switch } from 'react-router-dom'
+import { useState } from 'react'
 import Home from './Home'
 import Search from './Search'
 import FavSpots from './FavSpots'
@@ -11,9 +12,11 @@ function MainContent({ setShowLogin, showLogin, currentUser, setCurrentUser }) {
     const googleAPI = 
     const clientId = 
     const clientSecret = 
+    const [fav, setFav] = useState(false)
+
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
-    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let mm = String(today.getMonth() + 1).padStart(2, '0');
     let yyyy = today.getFullYear();
     today =  yyyy + mm + dd;
 
@@ -21,7 +24,7 @@ function MainContent({ setShowLogin, showLogin, currentUser, setCurrentUser }) {
       <div>
         <Switch>
             <Route exact path="/">
-                <Home currentUser={currentUser} setCurrentUser={setCurrentUser} googleAPI={googleAPI} clientId={clientId} clientSecret={clientSecret} today={today}/>
+                <Home currentUser={currentUser} setCurrentUser={setCurrentUser} googleAPI={googleAPI} clientId={clientId} clientSecret={clientSecret} today={today} fav={fav} setFav={setFav}/>
             </Route>
             <Route path="/search">
                 <Search googleAPI={googleAPI} clientId={clientId} clientSecret={clientSecret} today={today}/>

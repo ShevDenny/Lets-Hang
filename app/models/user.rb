@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-    has_many :user_events
-    has_many :fav_locations
+    has_many :user_events, dependent: :destroy
+    has_many :fav_locations, dependent: :destroy
     validates :user_name, :password, presence: {message: "must be present"}
     validates :user_name, :email, uniqueness: true 
     has_secure_password

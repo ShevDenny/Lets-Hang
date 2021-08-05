@@ -2,10 +2,9 @@ import { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 import MyHangsForm from "./MyHangsForm"
 
-function DisplayVenue({venue, googleAPI}) {
+function DisplayVenue({venue, googleAPI, fav, setFav}) {
     const [displayForm, setDisplayForm] = useState(false)
     const [errors, setErrors] = useState(null)
-    const [fav, setFav] = useState(false)
 
     // const history = useHistory()
     let locationId = ""
