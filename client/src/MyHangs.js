@@ -5,7 +5,7 @@ function MyHangs() {
   const [myHangs, setMyHangs] = useState([])
   const [errors, setErrors] = useState(null)
 
-  useEffect(() => {
+  function fetchEvents() {
     const userId = localStorage.getItem("user_id")
     fetch(`http://localhost:3000/user_events?user_id=${userId}`)
     .then(res => res.json())
@@ -18,7 +18,9 @@ function MyHangs() {
         
 
         let newState = data.map(userEvent => {
+          console.log(userEvent.id)
           return {
+            
             id: userEvent.id,
             name: userEvent.event.event,
             date: userEvent.event.date,
@@ -29,14 +31,18 @@ function MyHangs() {
         })
         setMyHangs(newState)
       }
-    })
+    },)
+    
+  }
 
-  },[])
+ 
+
+  
 
 
   const displayMyHangs = myHangs.map(event => {
     console.log(event)
-    return <DisplayEvents event={event} />
+    return <DisplayEvents setMyHangs={setMyHangs} event={event} />
   })
 
     return (

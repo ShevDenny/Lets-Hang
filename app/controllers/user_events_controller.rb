@@ -24,6 +24,11 @@ class UserEventsController < ApplicationController
         end
     end
 
+    def destroy      
+        user_event = UserEvent.find_by(id: params[:id])
+        user_event.destroy
+    end
+
     private
     
     def event_params

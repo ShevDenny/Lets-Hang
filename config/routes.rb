@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   
   resources :locations, only: [:index, :create]
-  # resources :users, only: [:show]
-  resources :user_events
+  resources :users, only: [:show]
+  resources :user_events, only: [:index, :create, :update, :destroy]
   resources :events
   # resources :fav_locations, only: [:index]
   post "/login", to: "sessions#create"
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get "/fav_locations/:id", to: "fav_locations#show"
   post "/events", to: "events#create"
   get '/re_auth', to: 'sessions#re_auth'
+  delete "/user_events/:id", to: 'user_events#destroy'
   # resources :sessions, only: [:create, :destroy]
   # delete "/logout", to: "sessions#destroy"
   # Routing logic: fallback requests for React Router.
