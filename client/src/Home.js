@@ -1,7 +1,8 @@
 import DisplayVenue from './DisplayVenue'
 import React, { useState, useEffect } from 'react'
+import {useHistory} from "react-router-dom"
 
-function Home({googleAPI, clientId, clientSecret, today}) {
+function Home({googleAPI, clientId, clientSecret, today, currentUser, setCurrentUser}) {
   const [hotSpot, setHotSpot] = useState({
     name: "",
     address: "",
@@ -9,13 +10,22 @@ function Home({googleAPI, clientId, clientSecret, today}) {
     type: "",
     imgUrl: ""
   })
-
+// const history = useHistory()
+// useEffect(() => {
+//   const userId = localStorage.getItem('user_id')
+//   fetch(`/re_auth?user_id=${userId}`).then((res) => {
+//     if (res.ok) {
+//       res.json().then((currentUser) => setCurrentUser(currentUser))
+//     }
+//   })
+// },[])
+ 
 
   useEffect(() => {
 
     const near= 'New York,NY'
   
-    const queries = ['tacos', 'sushi', 'ice cream', 'bars', 'dancing', 'restaurant', 'park', 'carousel']
+    const queries = ['tacos', 'sushi', 'ice cream', 'bar', 'dancing', 'restaurant', 'park', 'carousel', 'club', 'winery', 'lounge']
     const random = Math.floor(Math.random() * queries.length)
     const query = queries[random]
     console.log(query)

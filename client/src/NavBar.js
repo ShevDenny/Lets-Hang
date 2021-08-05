@@ -15,18 +15,24 @@ function NavBar({ setCurrentUser, currentUser}) {
   }
     return (
       <div id="navbar">
+        {Object.keys(currentUser).length !== 0 ? 
         <h1>Hello, {currentUser.user_name}</h1>
+        :
+        null}
         <NavLink className="links" to="/">Home</NavLink>
         <NavLink className="links" to="/search">Search</NavLink>
-        <NavLink className="links" to="/fav_spots">FavSpots</NavLink>
-        <NavLink className="links" to="/my_hangs">My Hangs</NavLink>
+
         {Object.keys(currentUser).length === 0 ? 
         <>
           <NavLink className="links" to="/log_in">Log In</NavLink>
           <NavLink className="links" to="/sign_up">Sign Up</NavLink>
         </>
         :
+        <>
+        <NavLink className="links" to="/fav_spots">FavSpots</NavLink>
+        <NavLink className="links" to="/my_hangs">My Hangs</NavLink>
         <NavLink className="links" to="/" onClick={handleLogOut}>Log Out</NavLink>
+        </>
         }
         
         

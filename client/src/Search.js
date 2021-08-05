@@ -1,3 +1,4 @@
+
 import DisplayVenue from "./DisplayVenue";
 import { useState } from 'react'
 
@@ -61,27 +62,10 @@ function Search({googleAPI, clientId, clientSecret, today}) {
       let res = await fetch(`https://api.foursquare.com/v2/venues/search?near=${location}&client_id=${clientId}&client_secret=${clientSecret}&query=${query}&limit=5&v=${today}`);
       let json = await res.json();
       console.log(json.response.venues)
-      console.log(json.response.venues[0].id)
+      // console.log(json.response.venues[0].id)
 
       const ids = json.response.venues.map(index => index.id)
       console.log(ids)
-
-      let type0, type1, type2, type3, type4
-      if (typeof json.response.venues[0].categories !== 'undefined' && json.response.venues[0].categories.length !== 0) {
-        type0 = json.response.venues[0].categories[0].name
-      }
-      if (typeof json.response.venues[1].categories !== 'undefined' && json.response.venues[1].categories.length !== 0) {
-        type1 = json.response.venues[1].categories[0].name
-      }
-      if (typeof json.response.venues[2].categories !== 'undefined' && json.response.venues[2].categories.length !== 0) {
-        type2 = json.response.venues[2].categories[0].name
-      }
-      if (typeof json.response.venues[3].categories !== 'undefined' && json.response.venues[3].categories.length !== 0) {
-        type3 = json.response.venues[3].categories[0].name
-      }
-      if (typeof json.response.venues[4].categories !== 'undefined' && json.response.venues[4].categories.length !== 0) {
-        type4 = json.response.venues[4].categories[0].name
-      }
 
       const results = ids.map(id => {
         return fetch(`https://api.foursquare.com/v2/venues/${id}?&client_id=${clientId}&client_secret=${clientSecret}&v=${today}`)
@@ -96,21 +80,56 @@ function Search({googleAPI, clientId, clientSecret, today}) {
           } else {
             useName = "Don't know"
           }
+
+          
+          if (typeof data.response.venue.photos.groups.items !== 'undefined' && data.response.venue.photos.groups.hasOwnProperty("items")) {
+            useImg = `${data.response.venue.photos.groups[0].items[0].prefix}200x400${data.response.venue.photos.groups[0].items[0].suffix}`
+          } else {
+            useImg = `${data.response.venue.photos.groups[0].items[0].prefix}200x400${data.response.venue.photos.groups[0].items[0].suffix}`
+          }
+
+           // if (typeof json.response.venues[3].categories !== 'undefined' && json.response.venues[3].categories.length !== 0) {
+      //   type3 = json.response.venues[3].categories[0].name
+      // }
+
+
           return {
             name: useName,
             address: data.response.venue.location.address,
             city: data.response.venue.location.city,
-            category: `type${id}`,
-            imgUrl: `${data.response.venue.photos.groups[0].items[0].prefix}200x500${data.response.venue.photos.groups[0].items[0].suffix}`
+            category: "",
+            imgUrl: useImg
           }
         })
       })
       
       Promise.all(results).then(data => {
-        //pu
+        
         setVenues(data)
       })
 
+      // let type0, type1, type2, type3, type4
+      // if (typeof json.response.venues[0].categories !== 'undefined' && json.response.venues[0].categories.length !== 0) {
+      //   type0 = json.response.venues[0].categories[0].name
+      // }
+      // if (typeof json.response.venues[1].categories !== 'undefined' && json.response.venues[1].categories.length !== 0) {
+      //   type1 = json.response.venues[1].categories[0].name
+      // }
+      // if (typeof json.response.venues[2].categories !== 'undefined' && json.response.venues[2].categories.length !== 0) {
+      //   type2 = json.response.venues[2].categories[0].name
+      // }
+      // if (typeof json.response.venues[3].categories !== 'undefined' && json.response.venues[3].categories.length !== 0) {
+      //   type3 = json.response.venues[3].categories[0].name
+      // }
+      // if (typeof json.response.venues[4].categories !== 'undefined' && json.response.venues[4].categories.length !== 0) {
+      //   type4 = json.response.venues[4].categories[0].name
+      // }
+
+      
+      // imgUrl
+      // `${data.response.venue.photos.groups[0].items[0].prefix}200x500${data.response.venue.photos.groups[0].items[0].suffix}`
+      // category
+      // `type${id}`,
       // console.log(results)
       
 // ************************************************************************
@@ -267,7 +286,7 @@ function Search({googleAPI, clientId, clientSecret, today}) {
       </form>
       <div className="resultsBox">
         <div className="resultVenues">
-          {display ? <div id="displayBox">Hello! {displayVenues}</div> : null}
+          {display ? <div id="displayBox"> {displayVenues}</div> : null}
         </div>
       </div>
       

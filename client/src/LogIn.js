@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-function LogIn({setCurrentUser}) {
+
+function LogIn({setShowLogin, currentUser, setCurrentUser}) {
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
   const [errors, setErrors] = useState(null)
@@ -20,13 +21,15 @@ function LogIn({setCurrentUser}) {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(user)
+      body: JSON.stringify({user})
     })
     const userData = await res.json()
     if(userData.id){
+      localStorage.setItem('user_id', userData.id)
       console.log(userData)
-      localStorage.setItem("user_id", userData.id)
       setCurrentUser(userData)
+      
+
       history.push('/')
     } else {
       setErrors(userData.message)
@@ -36,7 +39,7 @@ function LogIn({setCurrentUser}) {
 
   return (
     <div>
-      
+
       <form onSubmit={handleSubmit}>
         <h2>LOG IN</h2>
         <input
@@ -56,6 +59,7 @@ function LogIn({setCurrentUser}) {
         <input submit type="submit" value="Log in" />
         {errors ? errors.map(error => <div>{error}</div>) : null}
       </form>
+      
     </div>
   );
 }

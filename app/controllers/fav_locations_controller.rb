@@ -7,7 +7,7 @@ class FavLocationsController < ApplicationController
     end
 
     def create
-        byebug
+        
         # location = Location.find_by(name: params[:name])
         # id = 0
 

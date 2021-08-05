@@ -6,7 +6,7 @@ import MyHangs from './MyHangs'
 import LogIn from './LogIn'
 import SignUp from './SignUp'
 
-function MainContent({ currentUser, setCurrentUser }) {
+function MainContent({ setShowLogin, showLogin, currentUser, setCurrentUser }) {
 
     const googleAPI = 
     const clientId = 
@@ -21,7 +21,7 @@ function MainContent({ currentUser, setCurrentUser }) {
       <div>
         <Switch>
             <Route exact path="/">
-                <Home googleAPI={googleAPI} clientId={clientId} clientSecret={clientSecret} today={today}/>
+                <Home currentUser={currentUser} setCurrentUser={setCurrentUser} googleAPI={googleAPI} clientId={clientId} clientSecret={clientSecret} today={today}/>
             </Route>
             <Route path="/search">
                 <Search googleAPI={googleAPI} clientId={clientId} clientSecret={clientSecret} today={today}/>
@@ -33,7 +33,7 @@ function MainContent({ currentUser, setCurrentUser }) {
                 <MyHangs />
             </Route>
             <Route path="/log_in" >
-                <LogIn currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+                <LogIn showLogin={showLogin} setShowLogin={setShowLogin} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
             </Route>
             <Route path="/sign_up" >
                 <SignUp currentUser={currentUser} setCurrentUser={setCurrentUser}/>
