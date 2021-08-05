@@ -14,7 +14,7 @@ class EventsController < ApplicationController
             id = location.id
             
         else
-            new_location = Location.create(location_params)
+            new_location = Location.create(name: params[:name], address: params[:address], city: params[:city], category: params[:category], img_url: params[:img_url])
             
             if new_location.valid?
                 id = new_location.id

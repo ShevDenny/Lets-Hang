@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 import MyHangsForm from "./MyHangsForm"
 
-function DisplayVenue({venue, googleAPI, fav, setFav}) {
+function DisplayVenue({venue, googleAPI, fav, setFav, currentUser}) {
     const [displayForm, setDisplayForm] = useState(false)
     const [errors, setErrors] = useState(null)
 
@@ -78,7 +78,13 @@ function DisplayVenue({venue, googleAPI, fav, setFav}) {
             } else {
                 const error = await res.json()
                 setErrors(error.message)
-                console.log(error)
+                console.log(error.errors[0])
+                console.log(fav)
+                if (error.errors[0] === "User has already been taken") {
+                    setFav(true)
+                    console.log(fav)
+                }
+                
             }
 
             // *********************************************************
@@ -137,10 +143,15 @@ function DisplayVenue({venue, googleAPI, fav, setFav}) {
             {/* <img src="https://fastly.4sqi.net/img/general/300x500/6036_Xv3VOJm0A8HMF8EbQWdKPXIce7LxcvXOMt4_nW5gDhU.jpg" /> */}
             <h3>Address: {venue.address}, {venue.city}</h3>
             <h3>Open now: {venue.hours ? "Open" : "Closed" } </h3>
+            {Object.keys(currentUser).length === 0 ? 
+            null
+            :
+            <>
             {!fav ? <button value={venue.name} onClick={handleFav}>Fave Spot</button> : <button disabled>Fav-ed</button>}
             <button value={venue.name} onClick={handleClick}>Plan a hang</button>
-            {displayForm ? <MyHangsForm venue={venue}/> : null}           
-
+            {displayForm ? <MyHangsForm venue={venue}/> : null}
+            </>      
+            }
         </div>
     )
 }

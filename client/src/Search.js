@@ -2,7 +2,7 @@
 import DisplayVenue from "./DisplayVenue";
 import { useState } from 'react'
 
-function Search({googleAPI, clientId, clientSecret, today}) {
+function Search({googleAPI, clientId, clientSecret, today, fav, setFav, currentUser}) {
   const [display, setDisplay] = useState(false)
   // const [searchTerm, setSearchTerm] = useState({
   //   query: "",
@@ -104,7 +104,7 @@ function Search({googleAPI, clientId, clientSecret, today}) {
       })
       
       Promise.all(results).then(data => {
-        
+        setFav(false)
         setVenues(data)
       })
 
@@ -261,7 +261,7 @@ function Search({googleAPI, clientId, clientSecret, today}) {
 
     const displayVenues = venues.map(venue => {
       console.log(venue)
-      return <DisplayVenue venue={venue} />
+      return <DisplayVenue currentUser={currentUser} venue={venue} />
     })
 
   return (

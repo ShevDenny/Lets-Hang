@@ -65,7 +65,8 @@ function Home({googleAPI, clientId, clientSecret, today, currentUser, setCurrent
         hours: open_hours
       })  
       }
-      fetchOrder();
+      fetchOrder()
+      setFav(false);
     }, [])
     // console.log(hotSpot)
 
@@ -76,7 +77,7 @@ function Home({googleAPI, clientId, clientSecret, today, currentUser, setCurrent
           <h3>Miss being with people? Discover new venues and plan your next outing with "Let's Hang"!</h3>
         </div>
         <div>
-           <DisplayVenue venue={hotSpot} googleAPI={googleAPI} fav={fav} setFav={setFav}/>
+           <DisplayVenue currentUser={currentUser} venue={hotSpot} googleAPI={googleAPI} fav={fav} setFav={setFav}/>
         </div>
       </div>
     );

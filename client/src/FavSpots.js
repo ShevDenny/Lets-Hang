@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import DisplayVenue from './DisplayVenue'
 
-function FavSpots() {
+function FavSpots({fav, setFav}) {
 
   const [favSpots, setFavSpots] = useState([])
   const [errors, setErrors] = useState(null)
@@ -61,7 +61,8 @@ function FavSpots() {
   // why is this .map refusing to map over an array of objects?
     const displayVenues = favSpots.map(venue => {
     console.log(venue)
-    return <DisplayVenue venue={venue} />
+    setFav(true)
+    return <DisplayVenue fav={fav} venue={venue} />
   })
 
     return (

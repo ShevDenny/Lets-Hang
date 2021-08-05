@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import { useHistory } from "react-router-dom"
 
 function MyHangsForm({ venue }){
     const [errors, setErrors] = useState(null)
@@ -8,6 +9,7 @@ function MyHangsForm({ venue }){
         time: ""
     })
     const [locationId, setLocationId] = useState("")
+    const history = useHistory()
 
     function handleSubmit(e){
         e.preventDefault()
@@ -32,6 +34,7 @@ function MyHangsForm({ venue }){
             })
             if (res.ok) {
                 const data = await res.json()
+                history.push('/my_hangs')
                 console.log(data)
             } else {
                 const error = await res.json()
