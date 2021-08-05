@@ -43,35 +43,6 @@ function MyHangsForm({ venue }){
             }
         }
         fetchLocation()
-        // async function postEvent(){
-        //     const newForm = {
-        //         ...formData,
-        //         location_id: locationId
-        //     }
-        //     console.log(newForm)
-        //     const res = await fetch('http://localhost:3000/events', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(newForm)
-        //     })
-        //     if (res.ok) {
-        //         const data = await res.json()
-        //         console.log(data)
-        //     } else {
-        //         const error = await res.json()
-        //         setErrors(error.message)
-        //         console.log(error)
-        //     }
-        // }
-        // // async function main() {
-        // //     await Promise.all(
-        // //         fetchLocation()
-        // //     )
-        // //     postEvent()
-        // // }
-        // // main()
     }
 
     function handleChange(e) {

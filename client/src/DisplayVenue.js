@@ -144,14 +144,15 @@ function DisplayVenue({venue, googleAPI, fav, setFav, currentUser}) {
             <h3>Address: {venue.address}, {venue.city}</h3>
             <h3>Open now: {venue.hours ? "Open" : "Closed" } </h3>
             {Object.keys(currentUser).length === 0 ? 
-            null
-            :
+             null
+            : 
             <>
             {!fav ? <button value={venue.name} onClick={handleFav}>Fave Spot</button> : <button disabled>Fav-ed</button>}
             <button value={venue.name} onClick={handleClick}>Plan a hang</button>
             {displayForm ? <MyHangsForm venue={venue}/> : null}
-            </>      
-            }
+            </> 
+            }     
+            
         </div>
     )
 }

@@ -1,4 +1,10 @@
 class UserEventsController < ApplicationController
+
+    def index
+        user_event = UserEvent.where(user_id: @current_user.id)
+        render json: user_event
+    end 
+
     def show
         user_events = UserEvent.find_by(user_id: params[:user_id])
         if user_events
