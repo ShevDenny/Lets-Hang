@@ -129,6 +129,12 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Satisfy', cursive;
   }
 
+  .hangContainer {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    margin: 2rem;
+  }
+
   .fav h2 {
     font-family: 'Satisfy', cursive;
     font-size: 60px;

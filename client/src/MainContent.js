@@ -28,41 +28,11 @@ function MainContent({ setShowLogin, showLogin, currentUser, setCurrentUser }) {
     let yyyy = today.getFullYear();
     today =  yyyy + mm + dd;
 
-    function fetchHangs()  {
-        const userId = localStorage.getItem("user_id")
-        fetch(`http://localhost:3000/user_events?user_id=${userId}`)
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-          if (data.errors) {
-           
-            setErrors(data)
-          } else {
-            
-    
-            let newState = data.map(userEvent => {
-              console.log(userEvent.id)
-              return {
-                
-                id: userEvent.id,
-                name: userEvent.event.event,
-                date: userEvent.event.date,
-                time: userEvent.event.time,
-                user: userEvent.user.name
-    
-              }
-            })
-            setMyHangs(newState)
-          }
-        })
-      
-      }
-
     return (
       <MainStyle>
         <Switch>
             <Route exact path="/">
-                <Home fetchHangs={fetchHangs}currentUser={currentUser} setCurrentUser={setCurrentUser} googleAPI={googleAPI} clientId={clientId} clientSecret={clientSecret} today={today} fav={fav} setFav={setFav}/>
+                <Home currentUser={currentUser} setCurrentUser={setCurrentUser} googleAPI={googleAPI} clientId={clientId} clientSecret={clientSecret} today={today} fav={fav} setFav={setFav}/>
             </Route>
             <Route path="/search">
                 <Search currentUser={currentUser} setCurrentUser={setCurrentUser} googleAPI={googleAPI} clientId={clientId} clientSecret={clientSecret} today={today} fav={fav} setFav={setFav}/>
@@ -71,7 +41,7 @@ function MainContent({ setShowLogin, showLogin, currentUser, setCurrentUser }) {
                 <FavSpots fav={fav} setFav={setFav} currentUser={currentUser}/>
             </Route>
             <Route path="/my_hangs">
-                <MyHangs setMyHangs={setMyHangs} myHangs={myHangs}/>
+                <MyHangs currentUser={currentUser} setMyHangs={setMyHangs} myHangs={myHangs}/>
             </Route>
             <Route path="/log_in" >
                 <LogIn showLogin={showLogin} setShowLogin={setShowLogin} currentUser={currentUser} setCurrentUser={setCurrentUser}/>

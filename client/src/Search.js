@@ -265,32 +265,32 @@ function Search({googleAPI, clientId, clientSecret, today, fav, setFav, currentU
     })
 
   return (
-    <div className="search">
-      <h2>It's a search</h2>
-      
-      <form onSubmit={(e) => {
-        e.preventDefault()
-        handleSearch()
-      }}>
-        <input type="text" placeholder="Search" onChange={handleChange} value={query}></input>
-        <select name="location" onChange={handleLocation} value={location}>
-          <option value="default" disabled>Pick a Location</option>          
-          <option value="Brooklyn, NY">Brooklyn</option>
-          <option value="Jersey City, NJ">Jersey City</option>
-          <option value="Queens, NY">Queens</option>
-          <option value="Long Island, NY">Long Island</option>
-          <option value="Bronx, NY">The Bronx</option>
-          <option value="Manhattan, NY">Manhattan</option>
-        </select>
-        <input type="submit" type="submit"></input>
-      </form>
-      <div className="resultsBox">
-        <div className="resultVenues">
-          {display ? <div id="displayBox"> {displayVenues}</div> : null}
-        </div>
+    
+    <div className="fav">
+      <h2>Find Your Next Fav Spot</h2>
+      <div className="search" >
+        <form onSubmit={(e) => {
+          e.preventDefault()
+          handleSearch()
+        }}>
+          <input type="text" placeholder="Search" onChange={handleChange} value={query}></input>
+          <select name="location" onChange={handleLocation} value={location}>
+            <option value="default" disabled>Pick a Location</option>          
+            <option value="Brooklyn, NY">Brooklyn</option>
+            <option value="Jersey City, NJ">Jersey City</option>
+            <option value="Queens, NY">Queens</option>
+            <option value="Long Island, NY">Long Island</option>
+            <option value="Bronx, NY">The Bronx</option>
+            <option value="Manhattan, NY">Manhattan</option>
+          </select>
+          <input type="submit" type="submit"></input>
+        </form>
       </div>
-      
+      <div className="spotContainer">
+        {display ? <> {displayVenues}</> : null}
+      </div>
     </div>
+      
   )
     }
   

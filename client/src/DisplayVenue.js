@@ -4,7 +4,7 @@ import MyHangsForm from "./MyHangsForm"
 import styled from "styled-components"
 
 const DisplayVenueStyle = styled.div`
-    #venueCard {
+    .venueCard {
         border: 2px solid white;
         background-color: #1A1B54;
         border: 2px solid #0B13F9;
@@ -87,6 +87,8 @@ function DisplayVenue({venue, googleAPI, fav, setFav, currentUser}) {
         setDisplayForm(!displayForm)
         console.log(e.target.value)
     }
+
+    
   
     // async function fetchLocation(){
     //     const new_venue = {
@@ -212,7 +214,7 @@ function DisplayVenue({venue, googleAPI, fav, setFav, currentUser}) {
 
     return(
         <DisplayVenueStyle>
-            <div id="venueCard">
+            <div className="venueCard">
                 <h1>{venue.name}</h1>
                 <div id="venueContainer">
                     <div id="venueLeft"><img src={venue.imgUrl}/></div>

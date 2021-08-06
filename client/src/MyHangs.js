@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
 import DisplayEvents from './DisplayEvents'
 
-function MyHangs() {
+function MyHangs({currentUser}) {
   const [myHangs, setMyHangs] = useState([])
   const [errors, setErrors] = useState(null)
 
@@ -26,12 +26,11 @@ function MyHangs() {
             date: userEvent.event.date,
             time: userEvent.event.time,
             user: userEvent.user.name
-
           }
         })
         setMyHangs(newState)
       }
-    },)
+    })
     
   }
 
@@ -46,14 +45,14 @@ function MyHangs() {
     return <DisplayEvents setMyHangs={setMyHangs} event={event} />
   })
 
-    return (
-      <div className="fav">
-        <h2>My Hangs</h2>
-        <div className="spotContainer">
-          {displayMyHangs}
-        </div>
+  return (
+    <div className="fav">
+      <h2>{currentUser.name}'s Hangs</h2>
+      <div className="hangContainer">
+        {displayMyHangs}
       </div>
-    );
+    </div>
+  );
   }
   
   export default MyHangs;

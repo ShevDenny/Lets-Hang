@@ -67,7 +67,7 @@ function FavSpots({fav, setFav, currentUser}) {
 
     return (
       <div className="fav">
-        <h2>Your FavSpots</h2>
+        <h2>{currentUser.name}'s FavSpots</h2>
         <div className="spotContainer">
           {displayVenues}
         </div>
