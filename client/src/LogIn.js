@@ -42,10 +42,10 @@ function LogIn({setShowLogin, currentUser, setCurrentUser}) {
 
   return (
     <div className="login">
-      
+      <h2>Log In</h2>
 
       <form onSubmit={handleSubmit}>
-        <h2>Log In</h2>
+        
         <input
           type="text" 
           placeholder="User Name" 

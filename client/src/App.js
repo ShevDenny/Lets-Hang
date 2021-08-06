@@ -4,7 +4,7 @@ import { createGlobalStyle } from "styled-components"
 
 const GlobalStyle = createGlobalStyle`
   body {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Roboto Slab', serif;
     /* font-weight: bold; */
     background-color: black;
     color: white;
@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #navbar .links {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Roboto Slab', serif;
     background-color: black;
     color: white;
     border: 2px solid #0B13F9;
@@ -49,7 +49,7 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
   } */
   #navbar .login {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Roboto Slab', serif;
     background-color: black;
     color: white;
     border: 2px solid #0B13F9;
@@ -98,9 +98,10 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #hotleft h2 {
-    font-family: 'Source Sans Pro', sans-serif;
-    font-size: 35px;
+    font-family: 'Roboto Slab', serif;
+    font-size: 45px;
     font-weight: bold;
+    text-align: center;
   }
 
   .homeContainer {
@@ -159,7 +160,10 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .login h2 {
-    text-align: center
+    font-family: 'Satisfy', cursive;
+    font-size: 60px;
+    text-align: center;
+    text-shadow: 4px 4px #0B13F9;
   }
 
   #submit {
@@ -195,12 +199,37 @@ const GlobalStyle = createGlobalStyle`
 
   .hangs input {
     border-radius: 5px;
-    width: 100%;
+    width: 50%;
     padding: 12px 20px;
     margin: 8px 0;
-    display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
+  }
+  .hangs #submit {
+    font-family: 'Roboto Slab', serif;
+        background-color: black;
+        color: white;
+        border: 2px solid #0B13F9;
+        padding: 15px;
+        margin: 5px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 20px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        float: left;
+        display: block;
+        border-radius: 15px;
+        width: 13em;
+
+        &:hover {
+            background-color: white;
+            color: black;
+        }
+
+        &:disabled {
+            background-color: grey;
+        }
   }
 
 

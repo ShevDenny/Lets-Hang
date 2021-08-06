@@ -6,7 +6,7 @@ const DisplayEventStyle = styled.div`
         background-color: #1A1B54;
         border: 2px solid #0B13F9;
         width: 20em;
-        height: 30em;
+        height: 20em;
         display: grid;
         text-align: center;
         padding: 1rem;
@@ -33,12 +33,12 @@ const DisplayEventStyle = styled.div`
     }
 
     p {
-        font-family: 'Source Sans Pro', sans-serif;
+        font-family: 'Roboto Slab', serif;
         font-size: 20px;
     }
 
     button {
-        font-family: 'Source Sans Pro', sans-serif;
+        font-family: 'Roboto Slab', serif;
         background-color: black;
         color: white;
         border: 2px solid #0B13F9;
@@ -74,18 +74,16 @@ function DisplayEvents({event, setMyHangs}) {
         
         fetch(`http://localhost:3000/user_events/${event.id}?user_id=${userId}`, {
             method: 'DELETE'
-        }
+        })
         .then(res => res.json())
         .then(console.log)
         // .then(hangs => setMyHangs(hangs))
-        )
     }
 
     return (
         <DisplayEventStyle>
             <div className="venueCard">
                 <h3>Event: <i>{event.name}</i></h3>
-                <h4>At  </h4>
                 <p>Date: <i>{event.date}</i></p>
                 <p>Time: <i>{event.time}</i></p>
                 <button onClick={handleRemove}>Remove Hang</button>

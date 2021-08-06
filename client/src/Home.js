@@ -101,7 +101,7 @@ function Home({googleAPI, clientId, clientSecret, today, currentUser, setCurrent
             </div>
             <div id="hotspot" class="homeRight">
               <div id="hotleft"><h2>HOT SPOT OF THE MO':</h2></div>
-              <div id="hotright"><DisplayVenue currentUser={currentUser} venue={hotSpot} googleAPI={googleAPI} fav={fav} setFav={setFav}/></div>
+              <div id="hotleft"><DisplayVenue currentUser={currentUser} venue={hotSpot} googleAPI={googleAPI} fav={fav} setFav={setFav}/></div>
             </div>
           </div>
       </div>

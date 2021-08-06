@@ -40,8 +40,9 @@ function SignUp({ currentUser, setCurrentUser }) {
 
   return (
     <div className="login">
+      <h2>Create an account</h2>
       <form onSubmit={handleSubmit}>
-        <h2>Create an account</h2>
+        
         <input type="text" placeholder="Enter your name ..." value={name} name="Name" onChange={(e) => setName(e.target.value)}></input>
         <input type="text" placeholder="Choose a username..." value={userName} name="UserName" onChange={(e) => setUserName(e.target.value)}></input>
         <input type="password" placeholder="Password..." value={password} name="password" onChange={(e) => setPassword(e.target.value)}></input>

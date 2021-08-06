@@ -9,7 +9,7 @@ const DisplayVenueStyle = styled.div`
         background-color: #1A1B54;
         border: 2px solid #0B13F9;
         width: 35em;
-        height: 30em;
+        height: 35em;
         display: grid;
         text-align: center;
         padding: 1rem;
@@ -31,16 +31,17 @@ const DisplayVenueStyle = styled.div`
         width: 250px;
         height: 200px;
         object-fit: cover;
+        border: 2px solid #0B13F9;
     }
     h1 {
         font-size: 40px;
     }
     h3 {
-        font-family: 'Source Sans Pro', sans-serif;
+        font-family: 'Roboto Slab', serif;
         font-size: 20px;
     }
     button {
-        font-family: 'Source Sans Pro', sans-serif;
+        font-family: 'Roboto Slab', serif;
         background-color: black;
         color: white;
         border: 2px solid #0B13F9;

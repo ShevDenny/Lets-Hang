@@ -57,7 +57,7 @@ function MyHangsForm({ venue }){
    
 
    return (
-        <div className="hangs" className="form-popup" id="myForm">
+        <div className="hangs" id="myForm">
             <form onSubmit={handleSubmit}>
                 <input type="text" name="event" placeholder="Event Name" value={formData.event} onChange={handleChange}/>
                 <input type="text" name="date" placeholder="MM/DD/YYYY" value={formData.date} onChange={handleChange}/>
