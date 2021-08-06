@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 
+
+
+
 function LogIn({setShowLogin, currentUser, setCurrentUser}) {
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
@@ -38,10 +41,11 @@ function LogIn({setShowLogin, currentUser, setCurrentUser}) {
 
 
   return (
-    <div>
+    <div className="login">
+      
 
       <form onSubmit={handleSubmit}>
-        <h2>LOG IN</h2>
+        <h2>Log In</h2>
         <input
           type="text" 
           placeholder="User Name" 
@@ -56,7 +60,7 @@ function LogIn({setShowLogin, currentUser, setCurrentUser}) {
           name="password" 
           onChange={(e) => setPassword(e.target.value)}
         />
-        <input submit type="submit" value="Log in" />
+        <input submit id="submit" type="submit" value="Log in" />
         {errors ? errors.map(error => <div>{error}</div>) : null}
       </form>
       

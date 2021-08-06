@@ -12,6 +12,7 @@ function NavBar({ setCurrentUser, currentUser}) {
     // logout()
     localStorage.removeItem("user_id")
     setCurrentUser({})
+    alert("Lets hang soon!")
   }
     return (
       <div id="navbar">

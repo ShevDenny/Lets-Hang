@@ -32,20 +32,21 @@ function SignUp({ currentUser, setCurrentUser }) {
       localStorage.setItem("user_id", userData.id)
       setCurrentUser(userData)
       history.push('/')
+      alert("Thank you for signing up!")
     } else {
       setErrors(userData.message)
     }
   }
 
   return (
-    <div>
+    <div className="login">
       <form onSubmit={handleSubmit}>
-        <h2>Create an account:</h2>
-        <input type="text" placeholder="Your name here..." value={name} name="Name" onChange={(e) => setName(e.target.value)}></input>
+        <h2>Create an account</h2>
+        <input type="text" placeholder="Enter your name ..." value={name} name="Name" onChange={(e) => setName(e.target.value)}></input>
         <input type="text" placeholder="Choose a username..." value={userName} name="UserName" onChange={(e) => setUserName(e.target.value)}></input>
         <input type="password" placeholder="Password..." value={password} name="password" onChange={(e) => setPassword(e.target.value)}></input>
-        <input type="email" placeholder="Your email..." value={email} name="email" onChange={(e) => setEmail(e.target.value)}></input>
-        <input type="submit" value="Create Account"></input>
+        <input type="email" placeholder="Enter email..." value={email} name="email" onChange={(e) => setEmail(e.target.value)}></input>
+        <input id="submit" type="submit" value="Create Account"></input>
         {errors ? errors.map(error => <div>{error}</div>) : null}
       </form>
     </div>

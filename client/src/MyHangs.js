@@ -35,8 +35,9 @@ function MyHangs() {
     
   }
 
+  
  
-
+  fetchEvents()
   
 
 

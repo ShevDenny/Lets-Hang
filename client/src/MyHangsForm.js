@@ -57,12 +57,12 @@ function MyHangsForm({ venue }){
    
 
    return (
-        <div>
+        <div className="hangs">
             <form onSubmit={handleSubmit}>
                 <input type="text" name="event" placeholder="Event Name" value={formData.event} onChange={handleChange}/>
                 <input type="text" name="date" placeholder="MM/DD/YYYY" value={formData.date} onChange={handleChange}/>
                 <input type="text" name="time" placeholder="Time" value={formData.time} onChange={handleChange}/>
-                <input type="submit" value="Lets Hang!" />
+                <input id="submit" type="submit" value="Lets Hang!" />
             </form>
         </div>
     )
