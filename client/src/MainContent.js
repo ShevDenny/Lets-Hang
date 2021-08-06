@@ -6,6 +6,12 @@ import FavSpots from './FavSpots'
 import MyHangs from './MyHangs'
 import LogIn from './LogIn'
 import SignUp from './SignUp'
+import styled from "styled-components"
+
+const MainStyle = styled.div`
+    padding: 15px;
+
+`
 
 function MainContent({ setShowLogin, showLogin, currentUser, setCurrentUser }) {
 
@@ -21,7 +27,7 @@ function MainContent({ setShowLogin, showLogin, currentUser, setCurrentUser }) {
     today =  yyyy + mm + dd;
 
     return (
-      <div>
+      <MainStyle>
         <Switch>
             <Route exact path="/">
                 <Home currentUser={currentUser} setCurrentUser={setCurrentUser} googleAPI={googleAPI} clientId={clientId} clientSecret={clientSecret} today={today} fav={fav} setFav={setFav}/>
@@ -42,7 +48,7 @@ function MainContent({ setShowLogin, showLogin, currentUser, setCurrentUser }) {
                 <SignUp currentUser={currentUser} setCurrentUser={setCurrentUser}/>
             </Route>
         </Switch>
-      </div>
+      </MainStyle>
     );
   }
   

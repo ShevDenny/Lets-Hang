@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 import MyHangsForm from "./MyHangsForm"
+import styled from "styled-components"
+
+const DisplayVenueStyle = styled.div`
+
+`
 
 function DisplayVenue({venue, googleAPI, fav, setFav, currentUser}) {
     const [displayForm, setDisplayForm] = useState(false)
@@ -146,7 +151,7 @@ function DisplayVenue({venue, googleAPI, fav, setFav, currentUser}) {
     
 
     return(
-        <div>
+        <DisplayVenueStyle>
             <h1>{venue.name}</h1>
             <h3>Type of hang: {venue.category}</h3>
             <img src={venue.imgUrl}/>
@@ -166,7 +171,7 @@ function DisplayVenue({venue, googleAPI, fav, setFav, currentUser}) {
             </> 
             }     
             
-        </div>
+        </DisplayVenueStyle>
     )
 }
 
