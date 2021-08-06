@@ -66,9 +66,11 @@ function FavSpots({fav, setFav, currentUser}) {
   })
 
     return (
-      <div>
-        <h2>It's favspots</h2>
-        {displayVenues}
+      <div className="fav">
+        <h2>Your FavSpots</h2>
+        <div className="spotContainer">
+          {displayVenues}
+        </div>
       </div>
     );
   }

@@ -46,9 +46,11 @@ function MyHangs() {
   })
 
     return (
-      <div>
+      <div className="fav">
         <h2>My Hangs</h2>
-        {displayMyHangs}
+        <div className="spotContainer">
+          {displayMyHangs}
+        </div>
       </div>
     );
   }

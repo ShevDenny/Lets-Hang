@@ -5,6 +5,7 @@ import { createGlobalStyle } from "styled-components"
 const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Source Sans Pro', sans-serif;
+    /* font-weight: bold; */
     background-color: black;
     color: white;
   }
@@ -13,10 +14,11 @@ const GlobalStyle = createGlobalStyle`
     background-color: #1A1B54;
     overflow: hidden;
     padding: 15px;
+    height: 70px
   }
 
   #navbar .links {
-    font-family: 'Satisfy', cursive;
+    font-family: 'Source Sans Pro', sans-serif;
     background-color: black;
     color: white;
     border: 2px solid #0B13F9;
@@ -47,7 +49,7 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
   } */
   #navbar .login {
-    font-family: 'Satisfy', cursive;
+    font-family: 'Source Sans Pro', sans-serif;
     background-color: black;
     color: white;
     border: 2px solid #0B13F9;
@@ -79,7 +81,7 @@ const GlobalStyle = createGlobalStyle`
 
   #title {
     font-family: 'Satisfy', cursive;
-    font-size: 85px;
+    font-size: 95px;
     text-align: center;
     padding-left: 32px;
     color: white;
@@ -117,6 +119,22 @@ const GlobalStyle = createGlobalStyle`
     text-align: center;
   }
 
+  .spotContainer {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin: 2rem;
+  }
+
+  .spotContainer h1 {
+    font-family: 'Satisfy', cursive;
+  }
+
+  .fav h2 {
+    font-family: 'Satisfy', cursive;
+    font-size: 60px;
+    text-align: center;
+    text-shadow: 4px 4px #0B13F9;
+  }
 
   `;
 

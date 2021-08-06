@@ -10,7 +10,7 @@ import styled from "styled-components"
 
 const MainStyle = styled.div`
     padding: 15px;
-
+    
 `
 
 function MainContent({ setShowLogin, showLogin, currentUser, setCurrentUser }) {

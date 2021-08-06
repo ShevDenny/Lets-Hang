@@ -1,5 +1,6 @@
 import NavBar from './NavBar'
 import MainContent from './MainContent'
+import Footer from './Footer'
 import { useState, useEffect } from 'react'
 // import LogIn from './LogIn'
 
@@ -26,6 +27,7 @@ function PageContent() {
     <div>
       <NavBar currentUser={currentUser} setCurrentUser={setCurrentUser}/>
       <MainContent currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+      <Footer />
     </div>
   );
   }

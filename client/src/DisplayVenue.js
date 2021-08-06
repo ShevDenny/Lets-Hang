@@ -4,7 +4,67 @@ import MyHangsForm from "./MyHangsForm"
 import styled from "styled-components"
 
 const DisplayVenueStyle = styled.div`
+    #venueCard {
+        border: 2px solid white;
+        background-color: #1A1B54;
+        border: 2px solid #0B13F9;
+        width: 35em;
+        height: 30em;
+        display: grid;
+        text-align: center;
+        padding: 1rem;
+        margin: 5px;
+    }
+    .venueContainer {
+        display: flex;
+        justify-content: space-around;
+    }
+    .venueLeft {
+        width: 40%;
+        text-align: center;
+    }
+    .venueRight {
+        width: 40%;
+    }
+    img {
+        float: left;
+        width: 250px;
+        height: 200px;
+        object-fit: cover;
+    }
+    h1 {
+        font-size: 40px;
+    }
+    h3 {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 20px;
+    }
+    button {
+        font-family: 'Source Sans Pro', sans-serif;
+        background-color: black;
+        color: white;
+        border: 2px solid #0B13F9;
+        padding: 15px;
+        margin: 5px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 20px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        float: left;
+        display: block;
+        border-radius: 15px;
+        width: 13em;
 
+        &:hover {
+            background-color: white;
+            color: black;
+        }
+
+        &:disabled {
+            background-color: grey;
+        }
+    }
 `
 
 function DisplayVenue({venue, googleAPI, fav, setFav, currentUser}) {
@@ -152,25 +212,31 @@ function DisplayVenue({venue, googleAPI, fav, setFav, currentUser}) {
 
     return(
         <DisplayVenueStyle>
-            <h1>{venue.name}</h1>
-            <h3>Type of hang: {venue.category}</h3>
-            <img src={venue.imgUrl}/>
-            {/* <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${venue.imgUrl}&key=${googleAPI}`} /> */}
-            {/* <img src="https://fastly.4sqi.net/img/general/300x500/6036_Xv3VOJm0A8HMF8EbQWdKPXIce7LxcvXOMt4_nW5gDhU.jpg" /> */}
-            <h3>Address: {venue.address}, {venue.city}</h3>
-            <h3>Open now: {venue.hours ? "Open" : "Closed" } </h3>
-            {Object.keys(currentUser).length === 0
-            ?
-            <>
-            </>
-            : 
-            <>
-            {!fav ? <button value={venue.name} onClick={handleFav}>Fave Spot</button> : <button disabled>Fav-ed</button>}
-            <button value={venue.name} onClick={handleClick}>Plan a hang</button>
-            {displayForm ? <MyHangsForm venue={venue}/> : null}
-            </> 
-            }     
-            
+            <div id="venueCard">
+                <h1>{venue.name}</h1>
+                <div id="venueContainer">
+                    <div id="venueLeft"><img src={venue.imgUrl}/></div>
+                    {/* <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${venue.imgUrl}&key=${googleAPI}`} /> */}
+                    {/* <img src="https://fastly.4sqi.net/img/general/300x500/6036_Xv3VOJm0A8HMF8EbQWdKPXIce7LxcvXOMt4_nW5gDhU.jpg" /> */}
+                    <div id="venueRight">
+                        <h3>Type of hang: <i>{venue.category}</i></h3>
+                        <h3>Address: <br></br><i>{venue.address}<br></br> {venue.city}</i></h3>
+                        {typeof venue.hours !== 'undefined' ? <h3>Open now: {venue.hours ? "OPEN" : "closed" } </h3>: null}
+                        
+                    </div>     
+                </div>
+                {Object.keys(currentUser).length === 0
+                ?
+                <>
+                </>
+                : 
+                <div>
+                {!fav ? <button value={venue.name} onClick={handleFav}>Fave Spot</button> : null}
+                <button value={venue.name} onClick={handleClick}>Plan a hang</button>
+                {displayForm ? <MyHangsForm venue={venue}/> : null}
+                {/* <button disabled>Fav-ed</button> */}
+                </div> }
+            </div>
         </DisplayVenueStyle>
     )
 }
