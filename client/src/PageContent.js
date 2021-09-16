@@ -2,7 +2,6 @@ import NavBar from './NavBar'
 import MainContent from './MainContent'
 import Footer from './Footer'
 import { useState, useEffect } from 'react'
-// import LogIn from './LogIn'
 
 function PageContent() {
 

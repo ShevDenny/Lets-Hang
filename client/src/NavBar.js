@@ -3,13 +3,7 @@ import { NavLink } from 'react-router-dom'
 function NavBar({ setCurrentUser, currentUser}) {
 
   function handleLogOut(){
-    // async function logout(){
-    //   const res = await fetch('/logout', {method: 'DELETE'})
-    //   if(res.ok){
-    //     setCurrentUser({})
-    //   }
-    // }
-    // logout()
+  
     localStorage.removeItem("user_id")
     setCurrentUser({})
     alert("Lets hang soon!")

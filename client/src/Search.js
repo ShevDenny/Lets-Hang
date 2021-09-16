@@ -1,13 +1,9 @@
-
 import DisplayVenue from "./DisplayVenue";
 import { useState } from 'react'
 
-function Search({googleAPI, clientId, clientSecret, today, fav, setFav, currentUser}) {
+function Search({clientId, clientSecret, today, setFav, currentUser}) {
   const [display, setDisplay] = useState(false)
-  // const [searchTerm, setSearchTerm] = useState({
-  //   query: "",
-  //   location: ""
-  // })
+
   const [query, setQuery] = useState("")
   const [location, setLocation] = useState("default")
   const [venues, setVenues] = useState([{
@@ -56,23 +52,19 @@ function Search({googleAPI, clientId, clientSecret, today, fav, setFav, currentU
   }
 
   function handleSearch() {
-    console.log(location)
-    console.log(query)
+
     async function searchVenue() {
       let res = await fetch(`https://api.foursquare.com/v2/venues/search?near=${location}&client_id=${clientId}&client_secret=${clientSecret}&query=${query}&limit=5&v=${today}`);
       let json = await res.json();
-      console.log(json.response.venues)
-      // console.log(json.response.venues[0].id)
 
       const ids = json.response.venues.map(index => index.id)
-      console.log(ids)
 
       const results = ids.map(id => {
         return fetch(`https://api.foursquare.com/v2/venues/${id}?&client_id=${clientId}&client_secret=${clientSecret}&v=${today}`)
         .then(res => res.json())
         .then (data => {
-          console.log(data)
-          let useName, useAddress, useCity, useImg
+      
+          let useName, useImg
 
           
           if (typeof data.response.venue.name !== 'undefined' && data.response.venue.hasOwnProperty("name")) {
@@ -87,10 +79,6 @@ function Search({googleAPI, clientId, clientSecret, today, fav, setFav, currentU
           } else {
             useImg = `${data.response.venue.photos.groups[0].items[0].prefix}200x400${data.response.venue.photos.groups[0].items[0].suffix}`
           }
-
-           // if (typeof json.response.venues[3].categories !== 'undefined' && json.response.venues[3].categories.length !== 0) {
-      //   type3 = json.response.venues[3].categories[0].name
-      // }
 
 
           return {
@@ -107,148 +95,6 @@ function Search({googleAPI, clientId, clientSecret, today, fav, setFav, currentU
         setFav(false)
         setVenues(data)
       })
-
-      // let type0, type1, type2, type3, type4
-      // if (typeof json.response.venues[0].categories !== 'undefined' && json.response.venues[0].categories.length !== 0) {
-      //   type0 = json.response.venues[0].categories[0].name
-      // }
-      // if (typeof json.response.venues[1].categories !== 'undefined' && json.response.venues[1].categories.length !== 0) {
-      //   type1 = json.response.venues[1].categories[0].name
-      // }
-      // if (typeof json.response.venues[2].categories !== 'undefined' && json.response.venues[2].categories.length !== 0) {
-      //   type2 = json.response.venues[2].categories[0].name
-      // }
-      // if (typeof json.response.venues[3].categories !== 'undefined' && json.response.venues[3].categories.length !== 0) {
-      //   type3 = json.response.venues[3].categories[0].name
-      // }
-      // if (typeof json.response.venues[4].categories !== 'undefined' && json.response.venues[4].categories.length !== 0) {
-      //   type4 = json.response.venues[4].categories[0].name
-      // }
-
-      
-      // imgUrl
-      // `${data.response.venue.photos.groups[0].items[0].prefix}200x500${data.response.venue.photos.groups[0].items[0].suffix}`
-      // category
-      // `type${id}`,
-      // console.log(results)
-      
-// ************************************************************************
-      // this does work but only gives back 1 response (ids[0])
-      // fetch(`https://api.foursquare.com/v2/venues/${ids[0]}?&client_id=${clientId}&client_secret=${clientSecret}&v=${today}`)
-      //   .then(res => res.json())
-      //   .then (data => console.log(data))
-      //   .then(data => setVenues(
-      //     [{
-      //       name: data.response.venue[0].name,
-      //       address: data.response.venue[0].location.address,
-      //       city: data.response.venue[0].location.city,
-      //       category: type0,
-      //       imgUrl: ""
-      //     },
-      //     {
-      //       name: data.response.venue[1].name,
-      //       address: data.response.venue[1].location.address,
-      //       city: data.response.venue[1].location.city,
-      //       category: type1,
-      //       imgUrl: ""
-      //     },
-      //     {
-      //       name: data.response.venue[2].name,
-      //       address: data.response.venue[2].location.address,
-      //       city: data.response.venue[2].location.city,
-      //       category: type2,
-      //       imgUrl: ""
-      //     },
-      //     {
-      //       name: data.response.venue[3].name,
-      //       address: data.response.venue[3].location.address,
-      //       city: data.response.venue[3].location.city,
-      //       category: type3,
-      //       imgUrl: ""
-      //     },
-      //     {
-      //       name: data.response.venues[4].name,
-      //       address: data.response.venues[4].location.address,
-      //       city: data.response.venues[4].location.city,
-      //       category: type4,
-      //       imgUrl: ""
-      //     } ]
-      //   ))
-    //  ****************************************************
-      // console.log(results)
-      // let prefix = json2.response.venues.photos.groups.items.prefix
-      // let suffix = json2.response.venues.photos.groups.items.suffix
-
-      // return image = `${prefix}200x500${suffix}`
-
-      // const imgResults = json.response.venues.map(index => {
-      //   let placeSearch= json.response.venues[index].name + " " + location;
-      //   let res2 = fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${placeSearch}&key=${googleAPI}`);
-      //   let json2 = res2.json();
-      //   return json2.results[0].photos[0].photo_reference
-      // })
-
-      // console.log(imgResults)
-
-      // let placeSearch= json.response.venues[0].name + " " + location
-      // console.log(placeSearch)
-
-      // let res2 = await fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${placeSearch}&key=${googleAPI}`);
-      // let json2 = await res2.json();
-
-      // let type0, type1, type2, type3, type4
-      // if (typeof json.response.venues[0].categories !== 'undefined' && json.response.venues[0].categories.length !== 0) {
-      //   type0 = json.response.venues[0].categories[0].name
-      // }
-      // if (typeof json.response.venues[1].categories !== 'undefined' && json.response.venues[1].categories.length !== 0) {
-      //   type1 = json.response.venues[1].categories[0].name
-      // }
-      // if (typeof json.response.venues[2].categories !== 'undefined' && json.response.venues[2].categories.length !== 0) {
-      //   type2 = json.response.venues[2].categories[0].name
-      // }
-      // if (typeof json.response.venues[3].categories !== 'undefined' && json.response.venues[3].categories.length !== 0) {
-      //   type3 = json.response.venues[3].categories[0].name
-      // }
-      // if (typeof json.response.venues[4].categories !== 'undefined' && json.response.venues[4].categories.length !== 0) {
-      //   type4 = json.response.venues[4].categories[0].name
-      // }
-      // setVenues(
-      //   [{
-      //     name: json.response.venues[0].name,
-      //     address: json.response.venues[0].location.address,
-      //     city: json.response.venues[0].location.city,
-      //     category: type0,
-      //     imgUrl: ""
-      //   },
-      //   {
-      //     name: json.response.venues[1].name,
-      //     address: json.response.venues[1].location.address,
-      //     city: json.response.venues[1].location.city,
-      //     category: type1,
-      //     imgUrl: ""
-      //   },
-      //   {
-      //     name: json.response.venues[2].name,
-      //     address: json.response.venues[2].location.address,
-      //     city: json.response.venues[2].location.city,
-      //     category: type2,
-      //     imgUrl: ""
-      //   },
-      //   {
-      //     name: json.response.venues[3].name,
-      //     address: json.response.venues[3].location.address,
-      //     city: json.response.venues[3].location.city,
-      //     category: type3,
-      //     imgUrl: ""
-      //   },
-      //   {
-      //     name: json.response.venues[4].name,
-      //     address: json.response.venues[4].location.address,
-      //     city: json.response.venues[4].location.city,
-      //     category: type4,
-      //     imgUrl: ""
-      //   } ]
-      // )
     }
     
     searchVenue()
@@ -256,8 +102,6 @@ function Search({googleAPI, clientId, clientSecret, today, fav, setFav, currentU
     setDisplay(true)  
     
   }
-
-    console.log(venues)
 
     const displayVenues = venues.map(venue => {
       console.log(venue)

@@ -1,8 +1,7 @@
 import DisplayVenue from './DisplayVenue'
 import React, { useState, useEffect } from 'react'
-import {useHistory} from "react-router-dom"
 
-function Home({googleAPI, clientId, clientSecret, today, currentUser, setCurrentUser, fav, setFav}) {
+function Home({googleAPI, clientId, clientSecret, today, currentUser, fav, setFav}) {
   const [errors, setErrors] = useState(null)
   const [hotSpot, setHotSpot] = useState({
     name: "",
@@ -11,15 +10,7 @@ function Home({googleAPI, clientId, clientSecret, today, currentUser, setCurrent
     type: "",
     imgUrl: ""
   })
-// const history = useHistory()
-// useEffect(() => {
-//   const userId = localStorage.getItem('user_id')
-//   fetch(`/re_auth?user_id=${userId}`).then((res) => {
-//     if (res.ok) {
-//       res.json().then((currentUser) => setCurrentUser(currentUser))
-//     }
-//   })
-// },[])
+
  
 
   useEffect(() => {
@@ -29,27 +20,16 @@ function Home({googleAPI, clientId, clientSecret, today, currentUser, setCurrent
     const queries = ['tacos', 'sushi', 'ice cream', 'bar', 'dancing', 'restaurant', 'park', 'carousel', 'club', 'winery', 'lounge']
     const random = Math.floor(Math.random() * queries.length)
     const query = queries[random]
-    console.log(query)
-    
-    // let today = new Date();
-    // let dd = String(today.getDate()).padStart(2, '0');
-    // let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    // let yyyy = today.getFullYear();
-    // today =  yyyy + mm + dd;
-    // console.log(today)
         
     async function fetchOrder() {
       let res = await fetch(`https://api.foursquare.com/v2/venues/search?near=${near}&client_id=${clientId}&client_secret=${clientSecret}&query=${query}&limit=1&v=${today}`);
       let json = await res.json();
-      console.log(json.response.venues[0].name)
 
       let placeSearch= json.response.venues[0].name + "New York,NY"
 
       let res2 = await fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${placeSearch}&key=${googleAPI}`);
       let json2 = await res2.json();
-      
-      // console.log(json2.results[0])
-      // console.log(json2.results[0].opening_hours.open_now)
+   
       let open_hours
       if (typeof json2.results[0].opening_hours !== 'undefined' && json2.results[0].hasOwnProperty('opening_hours')) {
         open_hours = json2.results[0].opening_hours.open_now
@@ -83,14 +63,8 @@ function Home({googleAPI, clientId, clientSecret, today, currentUser, setCurrent
       }
       fetchOrder()
     
-      // console.log(hotSpot.name)
-      // const userId = localStorage.getItem("user_id")
-      // fetch(`http://localhost:3000/fav_locations/${userId}?user_id=${userId}&name=${hotSpot.name}`)
-      // .then(res => res.json())
-      // .then(data => console.log(data))
-      // setFav(false);
     }, [])
-    // console.log(hotSpot)
+  
 
     return (
       <div>

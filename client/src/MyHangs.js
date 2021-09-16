@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import DisplayEvents from './DisplayEvents'
 
 function MyHangs({currentUser}) {

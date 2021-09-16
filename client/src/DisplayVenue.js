@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react'
-import { useHistory } from "react-router-dom"
+import { useState } from 'react'
 import MyHangsForm from "./MyHangsForm"
 import styled from "styled-components"
 
@@ -73,16 +72,8 @@ function DisplayVenue({venue, googleAPI, fav, setFav, currentUser}) {
     const [errors, setErrors] = useState(null)
     const [favd, setFavd] = useState(false)
 
-    // const history = useHistory()
-    let locationId = ""
 
-    // useEffect(() => {
-    //         console.log(venue.name)
-    //         const userId = localStorage.getItem("user_id")
-    //         fetch(`http://localhost:3000/fav_locations/${userId}?user_id=${userId}&name=${venue.name}`)
-    //         .then(res => res.json())
-    //         .then(data => console.log(data))
-    // }, [])
+    let locationId = ""
 
     function handleClick(e) {
         setDisplayForm(!displayForm)
@@ -90,45 +81,9 @@ function DisplayVenue({venue, googleAPI, fav, setFav, currentUser}) {
     }
 
     
-  
-    // async function fetchLocation(){
-    //     const new_venue = {
-    //         name: venue.name,
-    //         address: venue.address,
-    //         city: venue.city,
-    //         category: venue.category,
-    //         img_url: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${venue.imgUrl}&key=${googleAPI}`
-    //     }
-    //     console.log(new_venue)
-    //     const res = await fetch('http://localhost:3000/locations', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify(new_venue)
-    //     })
-    //     if (res.ok) {
-    //         const data = await res.json()
-    //         // console.log(data)
-    //     } else {
-    //         const error = await res.json()
-    //         setErrors(error.message)
-    //         // console.log(error)
-    //     }
-        
-    // }
-    // fetchLocation()
+
     function handleFav(e) {
         console.log(e.target.value)
-        // const new_venue = {
-        //     name: venue.name,
-        //     address: venue.address,
-        //     city: venue.city,
-        //     category: venue.category,
-        //     img_url: venue.imgUrl,
-        //     // img_url: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${venue.imgUrl}&key=${googleAPI}`
-        // }
-        // console.log("HOPE", new_venue)
 
         async function fetchLocation(){
             const new_venue = {
@@ -164,50 +119,8 @@ function DisplayVenue({venue, googleAPI, fav, setFav, currentUser}) {
                 
             }
 
-            // *********************************************************
-            // all attempts at posting to location & fav location
-            // function someFetchOne(){
-            //     fetch("url")
-            //     .then(res => res.json())
-            //     .then(data => someFetchTwo(data))
-            // }
-
-            // function someFetchTwo(){
-            //     fetch("url")
-            //     .then(res => res.json())
-            //     .then(data => )
-            // }
-
-            // async function fetchFav(){
-            //     const new_fav = {
-            //         location_id: locationId,
-            //         user_id: 1,
-            //         note: "wow"
-            //     }
-            //     console.log(new_fav)
-            //     const res = await fetch('http://localhost:3000/fav_locations', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify(new_fav)
-            //     })
-            //     if (res.ok) {
-            //         const data = await res.json()
-            //         console.log(data)
-            //     } else {
-            //         const error = await res.json()
-            //         setErrors(error.message)
-            //         console.log(error)
-            //     }
-                
-            // }
-            // fetchFav()
-            // *************************************************************
         }
         fetchLocation()
-        console.log(locationId)
-        
         
     }
 
@@ -219,8 +132,6 @@ function DisplayVenue({venue, googleAPI, fav, setFav, currentUser}) {
                 <h1>{venue.name}</h1>
                 <div id="venueContainer">
                     <div id="venueLeft"><img src={venue.imgUrl}/></div>
-                    {/* <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${venue.imgUrl}&key=${googleAPI}`} /> */}
-                    {/* <img src="https://fastly.4sqi.net/img/general/300x500/6036_Xv3VOJm0A8HMF8EbQWdKPXIce7LxcvXOMt4_nW5gDhU.jpg" /> */}
                     <div id="venueRight">
                         <h3>Type of hang: <i>{venue.category}</i></h3>
                         <h3>Address: <br></br><i>{venue.address}<br></br> {venue.city}</i></h3>

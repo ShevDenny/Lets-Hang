@@ -5,8 +5,7 @@ function FavSpots({fav, setFav, currentUser}) {
 
   const [favSpots, setFavSpots] = useState([])
   const [errors, setErrors] = useState(null)
-  // let favData = []
-  //let displayVenues = []
+
 
   useEffect(() => {
     const userId = localStorage.getItem("user_id")
@@ -16,7 +15,6 @@ function FavSpots({fav, setFav, currentUser}) {
       if (data.errors){
         setErrors(data)
       } else {
-        console.log(data)
 
         // this is returning an array of objects
         let newState = data.map(fav => {
@@ -32,33 +30,10 @@ function FavSpots({fav, setFav, currentUser}) {
         })
 
         setFavSpots(newState)
-
-
-        console.log(favSpots)
-        // displayVenues = favSpots.map(venue => {
-        //   console.log(venue)
-        //   return <DisplayVenue venue={venue} />
-        // })
       }
     })
   }, [])
 
-  // async function fetchLocation(){
-  //   const userId = localStorage.getItem("user_id")
-  //   const res = await fetch(`http://localhost:3000/fav_locations?user_id=${userId}`)
-  //   if (res.ok) {
-  //       const data = await res.json()
-  //       console.log(data)
-  //       setFavSpots(data)
-  //   } else {
-  //       const error = await res.json()
-  //       setErrors(error.message)
-  //       console.log(error)
-  //   }
-  // }
-  // // fetchLocation()
-
-  // why is this .map refusing to map over an array of objects?
     const displayVenues = favSpots.map(venue => {
     console.log(venue)
     setFav(true)

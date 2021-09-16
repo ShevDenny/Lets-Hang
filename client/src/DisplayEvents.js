@@ -65,7 +65,7 @@ const DisplayEventStyle = styled.div`
 }
 `
 
-function DisplayEvents({event, setMyHangs}) {
+function DisplayEvents({event}) {
 
 
     function handleRemove(){
@@ -77,7 +77,6 @@ function DisplayEvents({event, setMyHangs}) {
         })
         .then(res => res.json())
         .then(console.log)
-        // .then(hangs => setMyHangs(hangs))
     }
 
     return (

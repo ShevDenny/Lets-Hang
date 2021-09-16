@@ -20,7 +20,7 @@ function MainContent({ setShowLogin, showLogin, currentUser, setCurrentUser }) {
     const clientSecret = 
     const [fav, setFav] = useState(false)
     const [myHangs, setMyHangs] = useState([])
-    const [errors, setErrors] = useState(null)
+
 
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
